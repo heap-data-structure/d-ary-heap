@@ -1,4 +1,19 @@
-<!DOCTYPE html><html lang="en"><head><title>001-core/makeheap</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../"><meta name="groc-document-path" content="001-core/makeheap"><meta name="groc-project-path" content="js/src/001-core/makeheap.js"><meta name="groc-github-url" content="https://github.com/aureooms/js-d-ary-heap"><link rel="stylesheet" type="text/css" media="all" href="../assets/style.css"><script type="text/javascript" src="../assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/aureooms/js-d-ary-heap/blob/master/js/src/001-core/makeheap.js">js/src/001-core/makeheap.js</a></div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="hljs-keyword">var</span> makeheap = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"> arity , compare , swap , a , i , j </span>) </span>{
+<!DOCTYPE html><html lang="en"><head><title>001-core/makeheap</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../"><meta name="groc-document-path" content="001-core/makeheap"><meta name="groc-project-path" content="js/src/001-core/makeheap.js"><meta name="groc-github-url" content="https://github.com/aureooms/js-d-ary-heap"><link rel="stylesheet" type="text/css" media="all" href="../assets/style.css"><script type="text/javascript" src="../assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/aureooms/js-d-ary-heap/blob/master/js/src/001-core/makeheap.js">js/src/001-core/makeheap.js</a></div></div><div id="document"><div class="segment"></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p>Builds a heap in O(n) operations.</p>
+<p>Parameters:</p>
+<ul>
+<li><p><strong>arity must be an int.</strong><br/>(arity of the heap)</p>
+</li>
+<li><p><strong>compare must be a function.</strong><br/>(the comparison function)</p>
+</li>
+<li><p><strong>swap must be a function.</strong><br/>(the swap function)</p>
+</li>
+<li><p><strong>a must be an array.</strong><br/>(the array where the heap is stored)</p>
+</li>
+<li><p><strong>i must be an int.</strong><br/>(left inner bound)</p>
+</li>
+<li><p><strong>j must be an int.</strong><br/>(right outer bound)</p>
+</li>
+</ul></div></div><div class="code"><div class="wrapper"><span class="hljs-keyword">var</span> makeheap = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"> arity , compare , swap , a , i , j </span>) </span>{
 
 	<span class="hljs-keyword">for</span> ( <span class="hljs-keyword">var</span> k = i + ( j - i + arity - <span class="hljs-number">2</span> ) / arity | <span class="hljs-number">0</span> ; k --&gt; i ; ) {
 

@@ -1,6 +1,10 @@
 <!DOCTYPE html><html lang="en"><head><title>index</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="index"><meta name="groc-project-path" content="README.md"><meta name="groc-github-url" content="https://github.com/aureooms/js-d-ary-heap"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/aureooms/js-d-ary-heap/blob/master/README.md">README.md</a></div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="-js-d-ary-heap-http-aureooms-github-io-js-d-ary-heap-"><a href="http://aureooms.github.io/js-d-ary-heap">js-d-ary-heap</a></h1>
 <p><a href="https://gitter.im/aureooms/js-d-ary-heap?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img src="https://badges.gitter.im/Join Chat.svg" alt="Gitter"></a></p>
 <p>d-ary heap code bricks in JavaScript.</p>
+<pre><code class="lang-js">makeheap( <span class="hljs-number">2</span> , increasing , swap , array , <span class="hljs-number">0</span> , array.length ) ;
+<span class="hljs-comment">//        ^       ^         ^       ^     ^        ^</span>
+<span class="hljs-comment">//      arity  ordering    swap   input [left  , right[</span>
+<span class="hljs-comment">//                        method</span></code></pre>
 <p><a href="https://raw.githubusercontent.com/aureooms/js-d-ary-heap/master/LICENSE"><img src="http://img.shields.io/npm/l/aureooms-js-d-ary-heap.svg?style=flat" alt="NPM license"></a>
 <a href="https://www.npmjs.org/package/aureooms-js-d-ary-heap"><img src="http://img.shields.io/npm/v/aureooms-js-d-ary-heap.svg?style=flat" alt="NPM version"></a>
 <a href="http://bower.io/search/?q=aureooms-js-d-ary-heap"><img src="http://img.shields.io/bower/v/aureooms-js-d-ary-heap.svg?style=flat" alt="Bower version"></a>
@@ -12,9 +16,105 @@
 <a href="https://www.npmjs.org/package/aureooms-js-d-ary-heap"><img src="http://img.shields.io/npm/dm/aureooms-js-d-ary-heap.svg?style=flat" alt="NPM downloads per month"></a>
 <a href="https://github.com/aureooms/js-d-ary-heap/issues"><img src="http://img.shields.io/github/issues/aureooms/js-d-ary-heap.svg?style=flat" alt="GitHub issues"></a>
 <a href="http://inch-ci.org/github/aureooms/js-d-ary-heap"><img src="http://inch-ci.org/github/aureooms/js-d-ary-heap.svg?branch=master&amp;style=shields" alt="Inline docs"></a></p>
+<p>Can be managed through <a href="https://github.com/jspm/jspm-cli">jspm</a>,
+<a href="https://github.com/duojs/duo">duo</a>,
+<a href="https://github.com/componentjs/component">component</a>,
+<a href="https://github.com/bower/bower">bower</a>,
+<a href="https://github.com/ender-js/Ender">ender</a>,
+<a href="https://github.com/caolan/jam">jam</a>,
+<a href="https://github.com/spmjs/spm">spm</a>,
+and <a href="https://github.com/npm/npm">npm</a>.</p>
+<h2 id="description">Description</h2>
 <p>This package contains a <code>d</code>-ary heap implementation that can be parametrized
 with any <code>d &gt; 0</code>.</p>
-<h2 id="reference">Reference:</h2>
+<h2 id="install">Install</h2>
+<h3 id="jspm">jspm</h3>
+<pre><code class="lang-terminal">jspm install github:aureooms/js-d-ary-heap
+# or
+jspm install npm:aureooms-js-d-ary-heap</code></pre>
+<h3 id="duo">duo</h3>
+<p>No install step needed for duo!</p>
+<h3 id="component">component</h3>
+<pre><code class="lang-terminal">component install aureooms/js-d-ary-heap</code></pre>
+<h3 id="bower">bower</h3>
+<pre><code class="lang-terminal">bower install aureooms-js-d-ary-heap</code></pre>
+<h3 id="ender">ender</h3>
+<pre><code class="lang-terminal">ender add aureooms-js-d-ary-heap</code></pre>
+<h3 id="jam">jam</h3>
+<pre><code class="lang-terminal">jam install aureooms-js-d-ary-heap</code></pre>
+<h3 id="spm">spm</h3>
+<pre><code class="lang-terminal">spm install aureooms-js-d-ary-heap --save</code></pre>
+<h3 id="npm">npm</h3>
+<pre><code class="lang-terminal">npm install aureooms-js-d-ary-heap --save</code></pre>
+<h2 id="require">Require</h2>
+<h3 id="jspm">jspm</h3>
+<pre><code class="lang-js"><span class="hljs-keyword">let</span> daryheap = <span class="hljs-built_in">require</span>( <span class="hljs-string">"github:aureooms/js-d-ary-heap"</span> ) ;
+<span class="hljs-comment">// or</span>
+<span class="hljs-keyword">import</span> daryheap <span class="hljs-keyword">from</span> <span class="hljs-string">'aureooms-js-d-ary-heap'</span> ;</code></pre>
+<h3 id="duo">duo</h3>
+<pre><code class="lang-js"><span class="hljs-keyword">let</span> daryheap = <span class="hljs-built_in">require</span>( <span class="hljs-string">"aureooms/js-d-ary-heap"</span> ) ;</code></pre>
+<h3 id="component-ender-spm-npm">component, ender, spm, npm</h3>
+<pre><code class="lang-js"><span class="hljs-keyword">let</span> daryheap = <span class="hljs-built_in">require</span>( <span class="hljs-string">"aureooms-js-d-ary-heap"</span> ) ;</code></pre>
+<h3 id="bower">bower</h3>
+<p>The script tag exposes the global variable <code>daryheap</code>.</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"bower_components/aureooms-js-d-ary-heap/js/dist/d-ary-heap.min.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span></code></pre>
+<p>Alternatively, you can use any tool mentioned <a href="http://bower.io/docs/tools/">here</a>.</p>
+<h3 id="jam">jam</h3>
+<pre><code class="lang-js"><span class="hljs-built_in">require</span>( [ <span class="hljs-string">"aureooms-js-d-ary-heap"</span> ] , <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"> daryheap </span>) </span>{ ... } ) ;</code></pre>
+<h2 id="use">Use</h2>
+<h3 id="functions">Functions</h3>
+<pre><code class="lang-js"><span class="hljs-comment">// Builds a heap in O(n) operations.</span>
+makeheap( arity , compare , swap , array , left , right ) ;
+
+<span class="hljs-comment">// Merges heaps at intervals [i, j[ and [j, k[ in array *a* into a new heap at interval [i, k[.</span>
+merge( arity , compare , swap , array , left , middle , right ) ;
+
+<span class="hljs-comment">// Computes which child is the smallest according to a comparison function.</span>
+nextchild( arity , compare , swap , array , left , right ) ;
+
+<span class="hljs-comment">// Pops the root from a d-ary heap.</span>
+pop( arity , compare , swap , array , left , right ) ;
+
+<span class="hljs-comment">// Sifts a node up to the root as if its priority was the highest.</span>
+pull( arity , compare , swap , array , left , right , target ) ;
+
+<span class="hljs-comment">// Inserts the jth element of an array in an existing dary heap in interval [i, j[.</span>
+push( arity , compare , swap , array , left , right ) ;
+
+<span class="hljs-comment">// Removes a target element from a d-ary heap.</span>
+remove( arity , compare , swap , array , left , right , target ) ;
+
+<span class="hljs-comment">// Sifts down a node.</span>
+siftdown( arity , compare , swap , array , left , right , target ) ;
+
+<span class="hljs-comment">// Sifts up a node.</span>
+siftup( arity , compare , swap , array , left , right , target ) ;</code></pre>
+<h3 id="adt">ADT</h3>
+<pre><code class="lang-js"><span class="hljs-comment">// can choose between 2 different implementations</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">//   - DAryHeap</span>
+<span class="hljs-comment">//      # head -&gt; value</span>
+<span class="hljs-comment">//      # headreference -&gt; reference</span>
+<span class="hljs-comment">//      # pop -&gt; value</span>
+<span class="hljs-comment">//      # popreference -&gt; reference</span>
+<span class="hljs-comment">//      # push( value ) -&gt; reference</span>
+<span class="hljs-comment">//      # pushreference( reference )</span>
+<span class="hljs-comment">//      # merge( other )</span>
+<span class="hljs-comment">//      # update( reference , value )</span>
+<span class="hljs-comment">//      # decreasekey( reference , value )</span>
+<span class="hljs-comment">//      # increasekey( reference , value )</span>
+<span class="hljs-comment">//      # delete( reference )</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">//   - DAryHeapWithoutReferences</span>
+<span class="hljs-comment">//      # head -&gt; value</span>
+<span class="hljs-comment">//      # pop -&gt; value</span>
+<span class="hljs-comment">//      # push( value ) -&gt; reference</span>
+<span class="hljs-comment">//      # merge( other )</span>
+
+<span class="hljs-keyword">let</span> heap = daryheap. ... ( <span class="hljs-number">2</span> , compare.increasing ) ;
+<span class="hljs-comment">//                         ^            ^</span>
+<span class="hljs-comment">//                       arity       ordering</span></code></pre>
+<h2 id="reference">Reference</h2>
 <ul>
 <li><a href="http://www.cs.princeton.edu/~wayne/cs423/lectures/heaps-4up.pdf">http://www.cs.princeton.edu/~wayne/cs423/lectures/heaps-4up.pdf</a></li>
 <li><a href="http://stackoverflow.com/questions/6531543/efficient-implementation-of-binary-heaps">http://stackoverflow.com/questions/6531543/efficient-implementation-of-binary-heaps</a></li>
