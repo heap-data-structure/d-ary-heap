@@ -1,10 +1,10 @@
 {
-	"name": "heap",
+	"name": "d-ary-heap",
 	"code": {
 		"main": [
 			"js",
 			"dist",
-			"heap.js"
+			"d-ary-heap.js"
 		],
 		"test": [
 			"test",

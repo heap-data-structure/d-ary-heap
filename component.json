@@ -1,11 +1,11 @@
 {
-	"name": "aureooms-js-heap",
-	"repo": "aureooms/js-heap",
+	"name": "aureooms-js-d-ary-heap",
+	"repo": "aureooms/js-d-ary-heap",
 	"scripts": [
-		"js/dist/heap.js"
+		"js/dist/d-ary-heap.js"
 	],
 	"version": "7.0.0",
-	"description": "Heap code bricks for JavaScript",
-	"main": "js/dist/heap.js",
+	"description": "d-ary heap code bricks for JavaScript",
+	"main": "js/dist/d-ary-heap.js",
 	"license": "AGPL-3.0"
 }

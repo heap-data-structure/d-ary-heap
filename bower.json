@@ -1,10 +1,10 @@
 {
-	"homepage": "http://aureooms.github.io/js-heap/",
-	"name": "aureooms-js-heap",
+	"homepage": "http://aureooms.github.io/js-d-ary-heap/",
+	"name": "aureooms-js-d-ary-heap",
 	"license": "AGPL-3.0",
-	"description": "Heap code bricks for JavaScript",
+	"description": "d-ary heap code bricks for JavaScript",
 	"version": "7.0.0",
-	"main": "js/dist/heap.js",
+	"main": "js/dist/d-ary-heap.js",
 	"ignore": [
 		"js/index.js",
 		"js/src",
