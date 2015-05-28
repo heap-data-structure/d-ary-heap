@@ -71,6 +71,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "foldPrefix": "^",
               "name": "JavaScript"
             },
+            "sourcePath": "/home/aureooms/dev/js/js-d-ary-heap/js/src/001-core/makeheap.js",
+            "projectPath": "js/src/001-core/makeheap.js",
+            "targetPath": "001-core/makeheap",
+            "pageTitle": "001-core/makeheap",
+            "title": "makeheap"
+          },
+          "depth": 2,
+          "outline": []
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
             "sourcePath": "/home/aureooms/dev/js/js-d-ary-heap/js/src/001-core/merge.js",
             "projectPath": "js/src/001-core/merge.js",
             "targetPath": "001-core/merge",
@@ -111,46 +131,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "foldPrefix": "^",
               "name": "JavaScript"
             },
-            "sourcePath": "/home/aureooms/dev/js/js-d-ary-heap/js/src/001-core/percolatedown.js",
-            "projectPath": "js/src/001-core/percolatedown.js",
-            "targetPath": "001-core/percolatedown",
-            "pageTitle": "001-core/percolatedown",
-            "title": "percolatedown"
-          },
-          "depth": 2,
-          "outline": []
-        }, {
-          "type": "file",
-          "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/home/aureooms/dev/js/js-d-ary-heap/js/src/001-core/percolateup.js",
-            "projectPath": "js/src/001-core/percolateup.js",
-            "targetPath": "001-core/percolateup",
-            "pageTitle": "001-core/percolateup",
-            "title": "percolateup"
-          },
-          "depth": 2,
-          "outline": []
-        }, {
-          "type": "file",
-          "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
             "sourcePath": "/home/aureooms/dev/js/js-d-ary-heap/js/src/001-core/pop.js",
             "projectPath": "js/src/001-core/pop.js",
             "targetPath": "001-core/pop",
@@ -176,6 +156,46 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "targetPath": "001-core/push",
             "pageTitle": "001-core/push",
             "title": "push"
+          },
+          "depth": 2,
+          "outline": []
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/home/aureooms/dev/js/js-d-ary-heap/js/src/001-core/siftdown.js",
+            "projectPath": "js/src/001-core/siftdown.js",
+            "targetPath": "001-core/siftdown",
+            "pageTitle": "001-core/siftdown",
+            "title": "siftdown"
+          },
+          "depth": 2,
+          "outline": []
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/home/aureooms/dev/js/js-d-ary-heap/js/src/001-core/siftup.js",
+            "projectPath": "js/src/001-core/siftup.js",
+            "targetPath": "001-core/siftup",
+            "pageTitle": "001-core/siftup",
+            "title": "siftup"
           },
           "depth": 2,
           "outline": []

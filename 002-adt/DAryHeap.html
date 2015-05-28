@@ -185,7 +185,7 @@ DAryHeap.prototype.decreasekey = <span class="hljs-function"><span class="hljs-k
 
 	reference.value = value;
 
-	percolateup( <span class="hljs-keyword">this</span>.arity, <span class="hljs-keyword">this</span>.compare, <span class="hljs-keyword">this</span>.swap, a, i, j, k );
+	siftup( <span class="hljs-keyword">this</span>.arity, <span class="hljs-keyword">this</span>.compare, <span class="hljs-keyword">this</span>.swap, a, i, j, k );
 
 };
 
@@ -200,7 +200,7 @@ DAryHeap.prototype.increasekey = <span class="hljs-function"><span class="hljs-k
 
 	reference.value = value;
 
-	percolatedown( <span class="hljs-keyword">this</span>.arity, <span class="hljs-keyword">this</span>.compare, <span class="hljs-keyword">this</span>.swap, a, i, j, k );
+	siftdown( <span class="hljs-keyword">this</span>.arity, <span class="hljs-keyword">this</span>.compare, <span class="hljs-keyword">this</span>.swap, a, i, j, k );
 
 };
 
