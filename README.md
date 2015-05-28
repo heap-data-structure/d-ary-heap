@@ -2,7 +2,7 @@
 ====
 [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/aureooms/js-d-ary-heap?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Heap code bricks in JavaScript.
+d-ary heap code bricks in JavaScript.
 
 [![NPM license](http://img.shields.io/npm/l/aureooms-js-d-ary-heap.svg?style=flat)](https://raw.githubusercontent.com/aureooms/js-d-ary-heap/master/LICENSE)
 [![NPM version](http://img.shields.io/npm/v/aureooms-js-d-ary-heap.svg?style=flat)](https://www.npmjs.org/package/aureooms-js-d-ary-heap)
@@ -17,11 +17,9 @@ Heap code bricks in JavaScript.
 [![Inline docs](http://inch-ci.org/github/aureooms/js-d-ary-heap.svg?branch=master&style=shields)](http://inch-ci.org/github/aureooms/js-d-ary-heap)
 
 This package contains a `d`-ary heap implementation that can be parametrized
-with any `d`, and some binomial heap implementations.
+with any `d > 0`.
 
-Binary and Binomial heap reference:
+## Reference:
 
   - http://www.cs.princeton.edu/~wayne/cs423/lectures/heaps-4up.pdf
   - http://stackoverflow.com/questions/6531543/efficient-implementation-of-binary-heaps
-
-***( forked from [js-heap](https://github.com/aureooms/js-heap) )***

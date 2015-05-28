@@ -1,6 +1,6 @@
 
 /**
- * Pop the root from a d-ary heap
+ * Pops the root from a d-ary heap
  *
  * Hypothesis : i < j
  *
@@ -12,7 +12,7 @@
  * @param {int} j - 1 is the last leaf
  */
 
-daryheap.pop = function ( arity, compare, swap, a, i, j ) {
+var pop = function ( arity, compare, swap, a, i, j ) {
 
 	var popped;
 
@@ -30,7 +30,7 @@ daryheap.pop = function ( arity, compare, swap, a, i, j ) {
 
 	// percolate down the new root
 
-	daryheap.percolatedown( arity, compare, swap, a, i, j, i );
+	percolatedown( arity, compare, swap, a, i, j, i );
 
 
 	// return old root
@@ -38,3 +38,5 @@ daryheap.pop = function ( arity, compare, swap, a, i, j ) {
 	return popped;
 
 };
+
+exports.pop = pop ;

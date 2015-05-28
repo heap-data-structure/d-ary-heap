@@ -87,7 +87,7 @@ DAryHeap.prototype.pop = function () {
 	i = 0;
 	j = a.length;
 
-	reference = daryheap.pop( this.arity, this.compare, this.swap, a, i, j );
+	reference = pop( this.arity, this.compare, this.swap, a, i, j );
 
 	a.pop();
 
@@ -110,7 +110,7 @@ DAryHeap.prototype.popreference = function () {
 	i = 0;
 	j = a.length;
 
-	reference = daryheap.pop( this.arity, this.compare, this.swap, a, i, j );
+	reference = pop( this.arity, this.compare, this.swap, a, i, j );
 
 	a.pop();
 
@@ -133,7 +133,7 @@ DAryHeap.prototype.push = function ( value ) {
 
 	a.push( reference );
 
-	daryheap.push( this.arity, this.compare, this.swap, a, i, j );
+	push( this.arity, this.compare, this.swap, a, i, j );
 
 	++this.length;
 
@@ -154,7 +154,7 @@ DAryHeap.prototype.pushreference = function ( reference ) {
 	reference.index = j;
 	a.push( reference );
 
-	daryheap.push( this.arity, this.compare, this.swap, a, i, j );
+	push( this.arity, this.compare, this.swap, a, i, j );
 
 	++this.length;
 
@@ -181,7 +181,7 @@ DAryHeap.prototype.merge = function ( other ) {
 		a[t].index = t;
 	}
 
-	daryheap.merge( this.arity, this.compare, this.swap, a, i, j, k );
+	merge( this.arity, this.compare, this.swap, a, i, j, k );
 
 	this.length += other.length;
 
@@ -223,7 +223,7 @@ DAryHeap.prototype.decreasekey = function ( reference, value ) {
 
 	reference.value = value;
 
-	daryheap.percolateup( this.arity, this.compare, this.swap, a, i, j, k );
+	percolateup( this.arity, this.compare, this.swap, a, i, j, k );
 
 };
 
@@ -238,7 +238,7 @@ DAryHeap.prototype.increasekey = function ( reference, value ) {
 
 	reference.value = value;
 
-	daryheap.percolatedown( this.arity, this.compare, this.swap, a, i, j, k );
+	percolatedown( this.arity, this.compare, this.swap, a, i, j, k );
 
 };
 
@@ -251,7 +251,7 @@ DAryHeap.prototype.delete = function ( reference ) {
 	j = a.length;
 	k = reference.index;
 
-	daryheap.delete( this.arity, this.compare, this.swap, a, i, j, k );
+	remove( this.arity, this.compare, this.swap, a, i, j, k );
 
 	a.pop();
 

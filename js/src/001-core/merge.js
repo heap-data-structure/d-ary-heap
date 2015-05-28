@@ -1,6 +1,6 @@
 
 /**
- * Merge heaps at intervals [i, j[ and [j, k[ in array *a*
+ * Merges heaps at intervals [i, j[ and [j, k[ in array *a*
  * into a new heap at interval [i, k[.
  *
  * Hypothesis :
@@ -17,10 +17,12 @@
  * @param {int} k - 1 is the index of the last leaf in the second heap
  */
 
-daryheap.merge = function ( arity, compare, swap, a, i, j, k ) {
+var merge = function ( arity, compare, swap, a, i, j, k ) {
 
 	for ( ; j < k ; ++j ) {
-		daryheap.percolateup( arity, compare, swap, a, i, j + 1, j );
+		percolateup( arity, compare, swap, a, i, j + 1, j );
 	}
 
 };
+
+exports.merge = merge ;

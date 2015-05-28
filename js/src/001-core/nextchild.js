@@ -14,7 +14,7 @@
  * @param {int} j - 1 is the last leaf
  */
 
-daryheap.nextchild = function ( arity, compare, swap, a, i, j ) {
+var nextchild = function ( arity, compare, swap, a, i, j ) {
 
 	var k, best;
 
@@ -33,3 +33,5 @@ daryheap.nextchild = function ( arity, compare, swap, a, i, j ) {
 	return best;
 
 };
+
+exports.nextchild = nextchild ;

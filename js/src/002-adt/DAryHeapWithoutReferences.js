@@ -58,7 +58,7 @@ DAryHeapWithoutReferences.prototype.pop = function () {
 	i = 0;
 	j = a.length;
 
-	value = daryheap.pop( this.arity, this.compare, this.swap, a, i, j );
+	value = pop( this.arity, this.compare, this.swap, a, i, j );
 
 	a.pop();
 
@@ -80,7 +80,7 @@ DAryHeapWithoutReferences.prototype.push = function ( value ) {
 
 	a.push( value );
 
-	daryheap.push( this.arity, this.compare, this.swap, a, i, j );
+	push( this.arity, this.compare, this.swap, a, i, j );
 
 	++this.length;
 
@@ -98,7 +98,7 @@ DAryHeapWithoutReferences.prototype.merge = function ( other ) {
 
 	k = a.length;
 
-	daryheap.merge( this.arity, this.compare, this.swap, a, i, j, k );
+	merge( this.arity, this.compare, this.swap, a, i, j, k );
 
 	this.length += other.length;
 

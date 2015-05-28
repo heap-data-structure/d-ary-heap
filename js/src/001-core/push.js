@@ -1,6 +1,6 @@
 
 /**
- * Insert the jth element of an array in an existing
+ * Inserts the jth element of an array in an existing
  * dary heap in interval [i, j[
  *
  * Hypothesis : i <= j
@@ -13,10 +13,12 @@
  * @param {int} j - 1 is the new leaf
  */
 
-daryheap.push = function ( arity, compare, swap, a, i, j ) {
+var push = function ( arity, compare, swap, a, i, j ) {
 
 	// percolate up the new leaf
 
-	return daryheap.percolateup( arity, compare, swap, a, i, j + 1, j );
+	return percolateup( arity, compare, swap, a, i, j + 1, j );
 
 };
+
+exports.push = push ;

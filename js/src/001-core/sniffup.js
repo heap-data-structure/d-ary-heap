@@ -1,6 +1,6 @@
 
 /**
- * Percolates up a node.
+ * Percolates a node up to the root as if its priority was the highest.
  *
  * @param {int} arity arity of the heap
  * @param {function} compare the comparison function
@@ -11,7 +11,7 @@
  * @param {int} k is the target node
  */
 
-daryheap.sniffup = function ( arity, compare, swap, a, i, j, k ) {
+var sniffup = function ( arity, compare, swap, a, i, j, k ) {
 
 	var current, parent;
 
@@ -35,3 +35,5 @@ daryheap.sniffup = function ( arity, compare, swap, a, i, j, k ) {
 	}
 
 };
+
+exports.sniffup = sniffup ;

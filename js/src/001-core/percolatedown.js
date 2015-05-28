@@ -12,7 +12,7 @@
  * @param {int} k is the target node
  */
 
-daryheap.percolatedown = function ( arity, compare, swap, a, i, j, k ) {
+var percolatedown = function ( arity, compare, swap, a, i, j, k ) {
 
 	var current, candidate, firstchild;
 
@@ -35,7 +35,7 @@ daryheap.percolatedown = function ( arity, compare, swap, a, i, j, k ) {
 		// if current value is smaller than its smallest
 		// child then we are done
 
-		candidate = daryheap.nextchild( arity, compare, swap, a, i + firstchild, j );
+		candidate = nextchild( arity, compare, swap, a, i + firstchild, j );
 
 		if ( compare( a[i + current], a[candidate] ) <= 0 ) {
 			break;
@@ -53,3 +53,5 @@ daryheap.percolatedown = function ( arity, compare, swap, a, i, j, k ) {
 	return i + current;
 
 };
+
+exports.percolatedown = percolatedown ;

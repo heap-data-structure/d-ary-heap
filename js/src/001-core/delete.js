@@ -1,6 +1,6 @@
 
 /**
- * Delete a target element from a d-ary heap
+ * Removes a target element from a d-ary heap
  *
  * Hypothesis : i < j
  *
@@ -13,14 +13,16 @@
  * @param {int} k is the target node
  */
 
-daryheap.delete = function ( arity, compare, swap, a, i, j, k ) {
+var remove = function ( arity, compare, swap, a, i, j, k ) {
 
 	// sniff target node all the way up
 
-	daryheap.sniffup( arity, compare, swap, a, i, j, k );
+	sniffup( arity, compare, swap, a, i, j, k );
 
 	// pop target node
 
-	return daryheap.pop( arity, compare, swap, a, i, j );
+	return pop( arity, compare, swap, a, i, j );
 
 };
+
+exports.remove = remove ;

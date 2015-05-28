@@ -11,7 +11,7 @@
  * @param {int} k is the target node
  */
 
-daryheap.percolateup = function ( arity, compare, swap, a, i, j, k ) {
+var percolateup = function ( arity, compare, swap, a, i, j, k ) {
 
 	var current, parent;
 
@@ -45,3 +45,5 @@ daryheap.percolateup = function ( arity, compare, swap, a, i, j, k ) {
 	return i + current;
 
 };
+
+exports.percolateup = percolateup ;
