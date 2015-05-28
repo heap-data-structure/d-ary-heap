@@ -1,19 +1,21 @@
 {
-	"homepage": "http://aureooms.github.io/js-d-ary-heap/",
-	"name": "aureooms-js-d-ary-heap",
-	"license": "AGPL-3.0",
-	"description": "d-ary heap code bricks for JavaScript",
-	"version": "9.0.0",
-	"main": "js/dist/d-ary-heap.js",
-	"ignore": [
-		"js/index.js",
-		"js/src",
-		"test",
-		"pkg.json",
-		"package.json",
-		".groc.json",
-		".travis.yml",
-		".gitignore",
-		"README.md"
-	]
+  "homepage": "http://aureooms.github.io/js-d-ary-heap/",
+  "name": "aureooms-js-d-ary-heap",
+  "license": "AGPL-3.0",
+  "description": "d-ary heap code bricks for JavaScript",
+  "version": "9.0.0",
+  "main": "js/dist/d-ary-heap.js",
+  "ignore": [
+    "js/index.js",
+    "js/src",
+    "test",
+    "pkg.json",
+    "package.json",
+    ".groc.json",
+    ".travis.yml",
+    ".gitignore",
+    "README.md",
+    "inch.json",
+    ".codeclimate.yml"
+  ]
 }
