@@ -36,6 +36,18 @@
 
 		exports.remove = remove;
 
+		/* js/src/001-core/makeheap.js */
+
+		var makeheap = function makeheap(arity, compare, swap, a, i, j) {
+
+			for (var k = i + (j - i + arity - 2) / arity | 0; k-- > i;) {
+
+				siftdown(arity, compare, swap, a, i, j, k);
+			}
+		};
+
+		exports.makeheap = makeheap;
+
 		/* js/src/001-core/merge.js */
 
 		/**
@@ -59,7 +71,7 @@
 		var merge = function merge(arity, compare, swap, a, i, j, k) {
 
 			for (; j < k; ++j) {
-				percolateup(arity, compare, swap, a, i, j + 1, j);
+				siftup(arity, compare, swap, a, i, j + 1, j);
 			}
 		};
 
@@ -101,10 +113,74 @@
 
 		exports.nextchild = nextchild;
 
-		/* js/src/001-core/percolatedown.js */
+		/* js/src/001-core/pop.js */
 
 		/**
-   * Percolates down a node.
+   * Pops the root from a d-ary heap
+   *
+   * Hypothesis : i < j
+   *
+   * @param {int} arity arity of the heap
+   * @param {function} compare the comparison function
+   * @param {function} swap the swap function
+   * @param {array} a the array where the heap is stored
+   * @param {int} i is the root
+   * @param {int} j - 1 is the last leaf
+   */
+
+		var pop = function pop(arity, compare, swap, a, i, j) {
+
+			var popped;
+
+			// decrement size of heap
+
+			--j;
+
+			// put last leaf at root
+
+			popped = a[i];
+			a[i] = a[j];
+
+			// sift down the new root
+
+			siftdown(arity, compare, swap, a, i, j, i);
+
+			// return old root
+
+			return popped;
+		};
+
+		exports.pop = pop;
+
+		/* js/src/001-core/push.js */
+
+		/**
+   * Inserts the jth element of an array in an existing
+   * dary heap in interval [i, j[
+   *
+   * Hypothesis : i <= j
+   *
+   * @param {int} arity arity of the heap
+   * @param {function} compare the comparison function
+   * @param {function} swap the swap function
+   * @param {array} a the array where the heap is stored
+   * @param {int} i is the root
+   * @param {int} j - 1 is the new leaf
+   */
+
+		var push = function push(arity, compare, swap, a, i, j) {
+
+			// sift up the new leaf
+
+			return siftup(arity, compare, swap, a, i, j + 1, j);
+		};
+
+		exports.push = push;
+
+		/* js/src/001-core/siftdown.js */
+
+		/**
+   * Sifts down a node.
    *
    * @param {int} arity arity of the heap
    * @param {function} compare the comparison function
@@ -115,7 +191,7 @@
    * @param {int} k is the target node
    */
 
-		var percolatedown = function percolatedown(arity, compare, swap, a, i, j, k) {
+		var siftdown = function siftdown(arity, compare, swap, a, i, j, k) {
 
 			var current, candidate, firstchild;
 
@@ -155,12 +231,12 @@
 			return i + current;
 		};
 
-		exports.percolatedown = percolatedown;
+		exports.siftdown = siftdown;
 
-		/* js/src/001-core/percolateup.js */
+		/* js/src/001-core/siftup.js */
 
 		/**
-   * Percolates up a node.
+   * Sifts up a node.
    *
    * @param {int} arity arity of the heap
    * @param {function} compare the comparison function
@@ -171,7 +247,7 @@
    * @param {int} k is the target node
    */
 
-		var percolateup = function percolateup(arity, compare, swap, a, i, j, k) {
+		var siftup = function siftup(arity, compare, swap, a, i, j, k) {
 
 			var current, parent;
 
@@ -204,71 +280,7 @@
 			return i + current;
 		};
 
-		exports.percolateup = percolateup;
-
-		/* js/src/001-core/pop.js */
-
-		/**
-   * Pops the root from a d-ary heap
-   *
-   * Hypothesis : i < j
-   *
-   * @param {int} arity arity of the heap
-   * @param {function} compare the comparison function
-   * @param {function} swap the swap function
-   * @param {array} a the array where the heap is stored
-   * @param {int} i is the root
-   * @param {int} j - 1 is the last leaf
-   */
-
-		var pop = function pop(arity, compare, swap, a, i, j) {
-
-			var popped;
-
-			// decrement size of heap
-
-			--j;
-
-			// put last leaf at root
-
-			popped = a[i];
-			a[i] = a[j];
-
-			// percolate down the new root
-
-			percolatedown(arity, compare, swap, a, i, j, i);
-
-			// return old root
-
-			return popped;
-		};
-
-		exports.pop = pop;
-
-		/* js/src/001-core/push.js */
-
-		/**
-   * Inserts the jth element of an array in an existing
-   * dary heap in interval [i, j[
-   *
-   * Hypothesis : i <= j
-   *
-   * @param {int} arity arity of the heap
-   * @param {function} compare the comparison function
-   * @param {function} swap the swap function
-   * @param {array} a the array where the heap is stored
-   * @param {int} i is the root
-   * @param {int} j - 1 is the new leaf
-   */
-
-		var push = function push(arity, compare, swap, a, i, j) {
-
-			// percolate up the new leaf
-
-			return percolateup(arity, compare, swap, a, i, j + 1, j);
-		};
-
-		exports.push = push;
+		exports.siftup = siftup;
 
 		/* js/src/001-core/sniffup.js */
 
@@ -504,7 +516,7 @@
 
 			reference.value = value;
 
-			percolateup(this.arity, this.compare, this.swap, a, i, j, k);
+			siftup(this.arity, this.compare, this.swap, a, i, j, k);
 		};
 
 		DAryHeap.prototype.increasekey = function (reference, value) {
@@ -518,7 +530,7 @@
 
 			reference.value = value;
 
-			percolatedown(this.arity, this.compare, this.swap, a, i, j, k);
+			siftdown(this.arity, this.compare, this.swap, a, i, j, k);
 		};
 
 		DAryHeap.prototype["delete"] = function (reference) {

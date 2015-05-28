@@ -28,9 +28,9 @@ var pop = function ( arity, compare, swap, a, i, j ) {
 	a[i] = a[j];
 
 
-	// percolate down the new root
+	// sift down the new root
 
-	percolatedown( arity, compare, swap, a, i, j, i );
+	siftdown( arity, compare, swap, a, i, j, i );
 
 
 	// return old root

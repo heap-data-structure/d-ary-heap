@@ -1,6 +1,6 @@
 
 /**
- * Percolates up a node.
+ * Sifts up a node.
  *
  * @param {int} arity arity of the heap
  * @param {function} compare the comparison function
@@ -11,7 +11,7 @@
  * @param {int} k is the target node
  */
 
-var percolateup = function ( arity, compare, swap, a, i, j, k ) {
+var siftup = function ( arity, compare, swap, a, i, j, k ) {
 
 	var current, parent;
 
@@ -46,4 +46,4 @@ var percolateup = function ( arity, compare, swap, a, i, j, k ) {
 
 };
 
-exports.percolateup = percolateup ;
+exports.siftup = siftup ;

@@ -20,7 +20,7 @@
 var merge = function ( arity, compare, swap, a, i, j, k ) {
 
 	for ( ; j < k ; ++j ) {
-		percolateup( arity, compare, swap, a, i, j + 1, j );
+		siftup( arity, compare, swap, a, i, j + 1, j );
 	}
 
 };

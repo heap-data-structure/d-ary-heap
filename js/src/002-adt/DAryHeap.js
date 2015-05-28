@@ -223,7 +223,7 @@ DAryHeap.prototype.decreasekey = function ( reference, value ) {
 
 	reference.value = value;
 
-	percolateup( this.arity, this.compare, this.swap, a, i, j, k );
+	siftup( this.arity, this.compare, this.swap, a, i, j, k );
 
 };
 
@@ -238,7 +238,7 @@ DAryHeap.prototype.increasekey = function ( reference, value ) {
 
 	reference.value = value;
 
-	percolatedown( this.arity, this.compare, this.swap, a, i, j, k );
+	siftdown( this.arity, this.compare, this.swap, a, i, j, k );
 
 };
 

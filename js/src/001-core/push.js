@@ -15,9 +15,9 @@
 
 var push = function ( arity, compare, swap, a, i, j ) {
 
-	// percolate up the new leaf
+	// sift up the new leaf
 
-	return percolateup( arity, compare, swap, a, i, j + 1, j );
+	return siftup( arity, compare, swap, a, i, j + 1, j );
 
 };
 
