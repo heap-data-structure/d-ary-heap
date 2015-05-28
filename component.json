@@ -4,7 +4,7 @@
 	"scripts": [
 		"js/dist/d-ary-heap.js"
 	],
-	"version": "8.0.0",
+	"version": "9.0.0",
 	"description": "d-ary heap code bricks for JavaScript",
 	"main": "js/dist/d-ary-heap.js",
 	"license": "AGPL-3.0"

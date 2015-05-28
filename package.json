@@ -3,7 +3,7 @@
 	"description": "d-ary heap code bricks for JavaScript",
 	"homepage": "http://aureooms.github.io/js-d-ary-heap/",
 	"main": "js/dist/d-ary-heap.js",
-	"version": "8.0.0",
+	"version": "9.0.0",
 	"repository": {
 		"url": "https://github.com/aureooms/js-d-ary-heap.git",
 		"type": "git"
