@@ -1,7 +1,7 @@
 
 /**
  * Inserts the jth element of an array in an existing
- * dary heap in interval [i, j[
+ * dary heap in interval [i, j[.
  *
  * Hypothesis : i <= j
  *

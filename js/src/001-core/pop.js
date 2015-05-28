@@ -1,6 +1,6 @@
 
 /**
- * Pops the root from a d-ary heap
+ * Pops the root from a d-ary heap.
  *
  * Hypothesis : i < j
  *

@@ -1,6 +1,6 @@
 
 /**
- * Removes a target element from a d-ary heap
+ * Removes a target element from a d-ary heap.
  *
  * Hypothesis : i < j
  *
@@ -15,9 +15,9 @@
 
 var remove = function ( arity, compare, swap, a, i, j, k ) {
 
-	// sniff target node all the way up
+	// pull target node all the way up
 
-	sniffup( arity, compare, swap, a, i, j, k );
+	pull( arity, compare, swap, a, i, j, k );
 
 	// pop target node
 

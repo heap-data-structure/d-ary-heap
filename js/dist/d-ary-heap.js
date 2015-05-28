@@ -7,36 +7,19 @@
 	var definition = function definition(exports, undefined) {
 
 		/* js/src/001-core */
-		/* js/src/001-core/delete.js */
+		/* js/src/001-core/makeheap.js */
 
 		/**
-   * Removes a target element from a d-ary heap
-   *
-   * Hypothesis : i < j
+   * Builds a heap in O(n) operations.
    *
    * @param {int} arity arity of the heap
    * @param {function} compare the comparison function
    * @param {function} swap the swap function
    * @param {array} a the array where the heap is stored
-   * @param {int} i is the root
-   * @param {int} j - 1 is the last leaf
-   * @param {int} k is the target node
+   * @param {int} i left inner bound
+   * @param {int} j right outer bound
+   *
    */
-
-		var remove = function remove(arity, compare, swap, a, i, j, k) {
-
-			// sniff target node all the way up
-
-			sniffup(arity, compare, swap, a, i, j, k);
-
-			// pop target node
-
-			return pop(arity, compare, swap, a, i, j);
-		};
-
-		exports.remove = remove;
-
-		/* js/src/001-core/makeheap.js */
 
 		var makeheap = function makeheap(arity, compare, swap, a, i, j) {
 
@@ -116,7 +99,7 @@
 		/* js/src/001-core/pop.js */
 
 		/**
-   * Pops the root from a d-ary heap
+   * Pops the root from a d-ary heap.
    *
    * Hypothesis : i < j
    *
@@ -152,11 +135,50 @@
 
 		exports.pop = pop;
 
+		/* js/src/001-core/pull.js */
+
+		/**
+   * Sifts a node up to the root as if its priority was the highest.
+   *
+   * @param {int} arity arity of the heap
+   * @param {function} compare the comparison function
+   * @param {function} swap the swap function
+   * @param {array} a the array where the heap is stored
+   * @param {int} i is the root element
+   * @param {int} j - 1 is the last leaf
+   * @param {int} k is the target node
+   */
+
+		var pull = function pull(arity, compare, swap, a, i, j, k) {
+
+			var current, parent;
+
+			current = k - i;
+
+			// while we are not the root
+
+			while (current !== 0) {
+
+				// address of the parent in a zero-based
+				// d-ary heap
+
+				parent = i + Math.floor((current - 1) / arity);
+
+				// swap with parent
+
+				swap(a, i + current, parent);
+
+				current = parent - i;
+			}
+		};
+
+		exports.pull = pull;
+
 		/* js/src/001-core/push.js */
 
 		/**
    * Inserts the jth element of an array in an existing
-   * dary heap in interval [i, j[
+   * dary heap in interval [i, j[.
    *
    * Hypothesis : i <= j
    *
@@ -176,6 +198,35 @@
 		};
 
 		exports.push = push;
+
+		/* js/src/001-core/remove.js */
+
+		/**
+   * Removes a target element from a d-ary heap.
+   *
+   * Hypothesis : i < j
+   *
+   * @param {int} arity arity of the heap
+   * @param {function} compare the comparison function
+   * @param {function} swap the swap function
+   * @param {array} a the array where the heap is stored
+   * @param {int} i is the root
+   * @param {int} j - 1 is the last leaf
+   * @param {int} k is the target node
+   */
+
+		var remove = function remove(arity, compare, swap, a, i, j, k) {
+
+			// pull target node all the way up
+
+			pull(arity, compare, swap, a, i, j, k);
+
+			// pop target node
+
+			return pop(arity, compare, swap, a, i, j);
+		};
+
+		exports.remove = remove;
 
 		/* js/src/001-core/siftdown.js */
 
@@ -281,45 +332,6 @@
 		};
 
 		exports.siftup = siftup;
-
-		/* js/src/001-core/sniffup.js */
-
-		/**
-   * Percolates a node up to the root as if its priority was the highest.
-   *
-   * @param {int} arity arity of the heap
-   * @param {function} compare the comparison function
-   * @param {function} swap the swap function
-   * @param {array} a the array where the heap is stored
-   * @param {int} i is the root element
-   * @param {int} j - 1 is the last leaf
-   * @param {int} k is the target node
-   */
-
-		var sniffup = function sniffup(arity, compare, swap, a, i, j, k) {
-
-			var current, parent;
-
-			current = k - i;
-
-			// while we are not the root
-
-			while (current !== 0) {
-
-				// address of the parent in a zero-based
-				// d-ary heap
-
-				parent = i + Math.floor((current - 1) / arity);
-
-				// swap with parent
-
-				swap(a, i + current, parent);
-
-				current = parent - i;
-			}
-		};
-
-		exports.sniffup = sniffup;
 
 		/* js/src/002-adt */
 		/* js/src/002-adt/DAryHeap.js */

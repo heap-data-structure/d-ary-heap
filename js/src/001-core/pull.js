@@ -1,6 +1,6 @@
 
 /**
- * Percolates a node up to the root as if its priority was the highest.
+ * Sifts a node up to the root as if its priority was the highest.
  *
  * @param {int} arity arity of the heap
  * @param {function} compare the comparison function
@@ -11,7 +11,7 @@
  * @param {int} k is the target node
  */
 
-var sniffup = function ( arity, compare, swap, a, i, j, k ) {
+var pull = function ( arity, compare, swap, a, i, j, k ) {
 
 	var current, parent;
 
@@ -36,4 +36,4 @@ var sniffup = function ( arity, compare, swap, a, i, j, k ) {
 
 };
 
-exports.sniffup = sniffup ;
+exports.pull = pull ;
