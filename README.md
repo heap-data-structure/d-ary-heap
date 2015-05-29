@@ -159,7 +159,7 @@ siftup( arity , compare , swap , array , left , right , target ) ;
 //   - DAryHeapWithoutReferences
 //      # head -> value
 //      # pop -> value
-//      # push( value ) -> reference
+//      # push( value )
 //      # merge( other )
 
 let heap = daryheap. ... ( 2 , compare.increasing ) ;
