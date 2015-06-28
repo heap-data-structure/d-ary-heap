@@ -1,8 +1,8 @@
 [js-d-ary-heap](http://aureooms.github.io/js-d-ary-heap)
-====
-[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/aureooms/js-d-ary-heap?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+==
 
-d-ary heap code bricks in JavaScript.
+`d`-ary heap code bricks in JavaScript.  Parent is
+[aureooms/js-heap](https://github.com/aureooms/js-heap).
 
 ```js
 makeheap( 2 , increasing , swap , array , 0 , array.length ) ;
