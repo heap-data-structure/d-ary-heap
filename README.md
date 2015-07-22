@@ -136,6 +136,11 @@ siftdown( arity , compare , swap , array , left , right , target ) ;
 
 // Sifts up a node.
 siftup( arity , compare , swap , array , left , right , target ) ;
+
+// Sorted iterator on the elements of the input array.
+// If only the first k elements are read the cost is O(n + k log n).
+// The array is mutated.
+sorted( arity , compare , swap , array , left , right ) ;
 ```
 
 ### ADT
