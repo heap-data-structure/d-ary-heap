@@ -2,7 +2,7 @@
 
 (function () {
 
-	"use strict";
+	'use strict';
 
 	var definition = function definition(exports, undefined) {
 
@@ -332,6 +332,38 @@
 		};
 
 		exports.siftup = siftup;
+
+		/* js/src/001-core/sorted.js */
+
+		var sorted = regeneratorRuntime.mark(function sorted(arity, compare, swap, a, i, j) {
+			return regeneratorRuntime.wrap(function sorted$(context$3$0) {
+				while (1) switch (context$3$0.prev = context$3$0.next) {
+					case 0:
+
+						makeheap(arity, compare, swap, a, i, j);
+
+					case 1:
+						if (!(i < j)) {
+							context$3$0.next = 7;
+							break;
+						}
+
+						context$3$0.next = 4;
+						return pop(arity, compare, swap, a, i, j);
+
+					case 4:
+						--j;
+						context$3$0.next = 1;
+						break;
+
+					case 7:
+					case "end":
+						return context$3$0.stop();
+				}
+			}, sorted, this);
+		});
+
+		exports.sorted = sorted;
 
 		/* js/src/002-adt */
 		/* js/src/002-adt/DAryHeap.js */
