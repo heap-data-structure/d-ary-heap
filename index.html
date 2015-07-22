@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en"><head><title>index</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="index"><meta name="groc-project-path" content="README.md"><meta name="groc-github-url" content="https://github.com/aureooms/js-d-ary-heap"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/aureooms/js-d-ary-heap/blob/master/README.md">README.md</a></div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="-js-d-ary-heap-http-aureooms-github-io-js-d-ary-heap-"><a href="http://aureooms.github.io/js-d-ary-heap">js-d-ary-heap</a></h1>
-<p><a href="https://gitter.im/aureooms/js-d-ary-heap?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img src="https://badges.gitter.im/Join Chat.svg" alt="Gitter"></a></p>
-<p>d-ary heap code bricks in JavaScript.</p>
+<p><code>d</code>-ary heap code bricks in JavaScript.  Parent is
+<a href="https://github.com/aureooms/js-heap">aureooms/js-heap</a>.</p>
 <pre><code class="lang-js">makeheap( <span class="hljs-number">2</span> , increasing , swap , array , <span class="hljs-number">0</span> , array.length ) ;
 <span class="hljs-comment">//        ^       ^         ^       ^     ^        ^</span>
 <span class="hljs-comment">//      arity  ordering    swap   input [left  , right[</span>
@@ -88,7 +88,12 @@ remove( arity , compare , swap , array , left , right , target ) ;
 siftdown( arity , compare , swap , array , left , right , target ) ;
 
 <span class="hljs-comment">// Sifts up a node.</span>
-siftup( arity , compare , swap , array , left , right , target ) ;</code></pre>
+siftup( arity , compare , swap , array , left , right , target ) ;
+
+<span class="hljs-comment">// Sorted iterator on the elements of the input array.</span>
+<span class="hljs-comment">// If only the first k elements are read the cost is O(n + k log n).</span>
+<span class="hljs-comment">// The array is mutated.</span>
+sorted( arity , compare , swap , array , left , right ) ;</code></pre>
 <h3 id="adt">ADT</h3>
 <pre><code class="lang-js"><span class="hljs-comment">// can choose between 2 different implementations</span>
 <span class="hljs-comment">//</span>
@@ -108,7 +113,7 @@ siftup( arity , compare , swap , array , left , right , target ) ;</code></pre>
 <span class="hljs-comment">//   - DAryHeapWithoutReferences</span>
 <span class="hljs-comment">//      # head -&gt; value</span>
 <span class="hljs-comment">//      # pop -&gt; value</span>
-<span class="hljs-comment">//      # push( value ) -&gt; reference</span>
+<span class="hljs-comment">//      # push( value )</span>
 <span class="hljs-comment">//      # merge( other )</span>
 
 <span class="hljs-keyword">let</span> heap = daryheap. ... ( <span class="hljs-number">2</span> , compare.increasing ) ;
