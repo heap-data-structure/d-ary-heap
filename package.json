@@ -31,7 +31,7 @@
 		"aureooms-js-itertools": "^3.0.0",
 		"aureooms-js-random": "^1.0.1",
 		"aureooms-js-sort": "^7.0.0",
-		"aureooms-node-package": "^6.0.1"
+		"aureooms-node-package": "^7.0.0"
 	},
 	"bugs": {
 		"url": "https://github.com/aureooms/js-d-ary-heap/issues"
