@@ -1,0 +1,65 @@
+{
+  "name": "aureooms-js-d-ary-heap",
+  "description": "d-ary heap code bricks for JavaScript",
+  "version": "12.0.0",
+  "author": "Aurélien Ooms <aurelien.ooms@gmail.com>",
+  "ava": {
+    "require": [
+      "babel-polyfill",
+      "babel-register"
+    ]
+  },
+  "babel": {
+    "presets": [
+      "latest"
+    ],
+    "env": {
+      "development": {
+        "sourceMaps": "inline"
+      }
+    }
+  },
+  "bugs": {
+    "url": "https://github.com/aureooms/js-d-ary-heap/issues"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "aureooms-js-array": "^3.1.0",
+    "aureooms-js-compare": "^1.4.5",
+    "aureooms-js-functools": "^2.0.3",
+    "aureooms-js-heap-spec": "^10.0.1",
+    "aureooms-js-itertools": "^3.1.1",
+    "aureooms-js-random": "^1.0.2",
+    "aureooms-js-sort": "^7.0.0",
+    "ava": "^0.17.0",
+    "babel-cli": "^6.18.0",
+    "babel-polyfill": "^6.20.0",
+    "babel-preset-latest": "^6.16.0",
+    "codeclimate-test-reporter": "^0.4.0",
+    "coveralls": "^2.11.15",
+    "esdoc": "^0.5.2",
+    "nyc": "^10.1.2"
+  },
+  "homepage": "http://aureooms.github.io/js-d-ary-heap/",
+  "keywords": [
+    "binary",
+    "bricks",
+    "d-ary",
+    "ender",
+    "heap",
+    "javascript",
+    "js"
+  ],
+  "license": "AGPL-3.0",
+  "main": "lib/index.js",
+  "repository": {
+    "url": "https://github.com/aureooms/js-d-ary-heap.git",
+    "type": "git"
+  },
+  "scripts": {
+    "build": "babel src -d lib",
+    "cover": "nyc --reporter=lcov npm test",
+    "prepublish": "npm run build",
+    "test": "ava ./test/src --concurrency 8"
+  }
+}

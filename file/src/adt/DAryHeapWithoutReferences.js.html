@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl">
-  <title data-ice="title">aureooms/js-d-ary-heap API Document</title>
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/adt/DAryHeapWithoutReferences.js | aureooms/js-d-ary-heap API Document</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -50,33 +50,113 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="-js-d-ary-heap-http-aureooms-github-io-js-d-ary-heap-"><a href="http://aureooms.github.io/js-d-ary-heap">js-d-ary-heap</a></h1>
-<p><code>d</code>-ary heap code bricks in JavaScript. Parent is
-<a href="https://github.com/aureooms/js-heap">aureooms/js-heap</a>.</p>
-<pre><code class="lang-js"><code class="source-code prettyprint">makeheap( 2 , increasing , swap , array , 0 , array.length ) ;
-//        ^       ^         ^       ^     ^        ^
-//      arity  ordering    swap   input [left  , right[
-//                        method</code>
+<div class="content" data-ice="content"><h1 data-ice="title">src/adt/DAryHeapWithoutReferences.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">
+import { pop , push , merge } from &apos;../core&apos; ;
+
+export default function DAryHeapWithoutReferences ( arity, compare ) {
+
+	// arity of this heap
+
+	this.arity = arity;
+
+
+	// the comparison function
+
+	this.compare = compare;
+
+
+	// array used to store values
+
+	this.array = [];
+
+
+	// size of the heap
+
+	this.length = 0;
+
+}
+
+
+DAryHeapWithoutReferences.prototype.swap = function ( a, i, j ) {
+
+	const tmp = a[i];
+	a[i] = a[j];
+	a[j] = tmp;
+
+};
+
+
+DAryHeapWithoutReferences.prototype.head = function () {
+
+	if ( this.length === 0 ) {
+		return undefined;
+	}
+
+	return this.array[0];
+
+};
+
+
+DAryHeapWithoutReferences.prototype.pop = function () {
+
+	var a, i, j, value;
+
+	if ( this.length === 0 ) {
+		return undefined;
+	}
+
+	a = this.array;
+	i = 0;
+	j = a.length;
+
+	value = pop( this.arity, this.compare, this.swap, a, i, j );
+
+	a.pop();
+
+	--this.length;
+
+	return value;
+
+};
+
+
+DAryHeapWithoutReferences.prototype.push = function ( value ) {
+
+	var a, i, j;
+
+	a = this.array;
+	i = 0;
+	j = a.length;
+
+
+	a.push( value );
+
+	push( this.arity, this.compare, this.swap, a, i, j );
+
+	++this.length;
+
+};
+
+DAryHeapWithoutReferences.prototype.merge = function ( other ) {
+
+	var a, i, j, k;
+
+	a = this.array;
+	i = 0;
+	j = a.length;
+
+	a = this.array = a.concat( other.array );
+
+	k = a.length;
+
+	merge( this.arity, this.compare, this.swap, a, i, j, k );
+
+	this.length += other.length;
+
+};
 </code></pre>
-<p><a href="https://raw.githubusercontent.com/aureooms/js-d-ary-heap/master/LICENSE"><img src="http://img.shields.io/npm/l/aureooms-js-d-ary-heap.svg?style=flat" alt="NPM license"></a>
-<a href="https://www.npmjs.org/package/aureooms-js-d-ary-heap"><img src="http://img.shields.io/npm/v/aureooms-js-d-ary-heap.svg?style=flat" alt="NPM version"></a>
-<a href="https://travis-ci.org/aureooms/js-d-ary-heap"><img src="http://img.shields.io/travis/aureooms/js-d-ary-heap.svg?style=flat" alt="Build Status"></a>
-<a href="https://coveralls.io/r/aureooms/js-d-ary-heap"><img src="http://img.shields.io/coveralls/aureooms/js-d-ary-heap.svg?style=flat" alt="Coverage Status"></a>
-<a href="https://david-dm.org/aureooms/js-d-ary-heap#info=dependencies"><img src="http://img.shields.io/david/aureooms/js-d-ary-heap.svg?style=flat" alt="Dependencies Status"></a>
-<a href="https://david-dm.org/aureooms/js-d-ary-heap#info=devDependencies"><img src="http://img.shields.io/david/dev/aureooms/js-d-ary-heap.svg?style=flat" alt="devDependencies Status"></a>
-<a href="https://codeclimate.com/github/aureooms/js-d-ary-heap"><img src="http://img.shields.io/codeclimate/github/aureooms/js-d-ary-heap.svg?style=flat" alt="Code Climate"></a>
-<a href="https://www.npmjs.org/package/aureooms-js-d-ary-heap"><img src="http://img.shields.io/npm/dm/aureooms-js-d-ary-heap.svg?style=flat" alt="NPM downloads per month"></a>
-<a href="https://github.com/aureooms/js-d-ary-heap/issues"><img src="http://img.shields.io/github/issues/aureooms/js-d-ary-heap.svg?style=flat" alt="GitHub issues"></a>
-<a href="https://aureooms.github.io/js-d-ary-heap/source.html"><img src="https://aureooms.github.io/js-d-ary-heap/badge.svg" alt="Documentation"></a></p>
-<h2 id="description">Description</h2>
-<p>This package contains a <code>d</code>-ary heap implementation that can be parametrized
-with any <code>d &gt; 0</code>.</p>
-<h2 id="reference">Reference</h2>
-<ul>
-<li><a href="http://www.cs.princeton.edu/~wayne/cs423/lectures/heaps-4up.pdf">http://www.cs.princeton.edu/~wayne/cs423/lectures/heaps-4up.pdf</a></li>
-<li><a href="http://stackoverflow.com/questions/6531543/efficient-implementation-of-binary-heaps">http://stackoverflow.com/questions/6531543/efficient-implementation-of-binary-heaps</a></li>
-</ul>
-</div>
+
 </div>
 
 <footer class="footer">

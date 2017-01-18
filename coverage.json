@@ -1,0 +1,73 @@
+{
+  "coverage": "75%",
+  "expectCount": 12,
+  "actualCount": 9,
+  "files": {
+    "src/adt/DAryHeap.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        4
+      ]
+    },
+    "src/adt/DAryHeapWithoutReferences.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        4
+      ]
+    },
+    "src/core/makeheap.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/core/merge.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/core/nextchild.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/core/pop.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/core/pull.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/core/push.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/core/remove.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/core/siftdown.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/core/siftup.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/core/sorted.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        5
+      ]
+    }
+  }
+}
