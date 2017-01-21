@@ -1,6 +1,6 @@
 import test from 'ava' ;
 
-import array from "aureooms-js-array" ;
+import { iota , swap } from "aureooms-js-array" ;
 import compare from "aureooms-js-compare" ;
 import random from "aureooms-js-random" ;
 import { issorted } from "aureooms-js-sort" ;
@@ -17,11 +17,11 @@ var check = function ( arity ,comparename, compare , ctor , n ) {
 
 		var a = new ctor( n ) ;
 
-		array.iota( a , 0 , n , 0 ) ;
+		iota( a , 0 , n , 0 ) ;
 
 		random.shuffle( a , 0 , n ) ;
 
-		makeheap( arity , compare , array.swap , a , 0 , n ) ;
+		makeheap( arity , compare , swap , a , 0 , n ) ;
 
 		t.deepEqual( a.length , n , "size stays the same" ) ;
 
@@ -31,7 +31,7 @@ var check = function ( arity ,comparename, compare , ctor , n ) {
 
 		while ( i-- ) {
 
-			out.push( pop( arity , compare , array.swap , a , 0 , i + 1 ) ) ;
+			out.push( pop( arity , compare , swap , a , 0 , i + 1 ) ) ;
 
 		}
 
