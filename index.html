@@ -50,13 +50,20 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="-js-d-ary-heap-http-aureooms-github-io-js-d-ary-heap-"><a href="http://aureooms.github.io/js-d-ary-heap">js-d-ary-heap</a></h1>
-<p><code>d</code>-ary heap code bricks in JavaScript. Parent is
-<a href="https://github.com/aureooms/js-heap">aureooms/js-heap</a>.</p>
+<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="-aureooms-js-d-ary-heap-https-aureooms-github-io-js-d-ary-heap-"><a href="https://aureooms.github.io/js-d-ary-heap">@aureooms/js-d-ary-heap</a></h1>
+<p><img src="https://cdn.rawgit.com/aureooms/js-d-ary-heap/master/media/sketch.svg" width="864"></p>
+<p><code>d</code>-ary heap data structure library for JavaScript.
+See <a href="https://aureooms.github.io/js-d-ary-heap">docs</a>.
+Parent is <a href="https://github.com/aureooms/js-heap">@aureooms/js-heap</a>.</p>
 <pre><code class="lang-js"><code class="source-code prettyprint">makeheap( 2 , increasing , swap , array , 0 , array.length ) ;
 //        ^       ^         ^       ^     ^        ^
 //      arity  ordering    swap   input [left  , right[
-//                        method</code>
+//                        method
+//
+let heap = new DAryHeap( 2 , compare.increasing ) ;
+//                       ^            ^
+//                     arity       ordering
+//</code>
 </code></pre>
 <p><a href="https://raw.githubusercontent.com/aureooms/js-d-ary-heap/master/LICENSE"><img src="http://img.shields.io/npm/l/aureooms-js-d-ary-heap.svg?style=flat" alt="NPM license"></a>
 <a href="https://www.npmjs.org/package/aureooms-js-d-ary-heap"><img src="http://img.shields.io/npm/v/aureooms-js-d-ary-heap.svg?style=flat" alt="NPM version"></a>
