@@ -1,14 +1,22 @@
-[js-d-ary-heap](http://aureooms.github.io/js-d-ary-heap)
+[@aureooms/js-d-ary-heap](https://aureooms.github.io/js-d-ary-heap)
 ==
 
-`d`-ary heap code bricks in JavaScript. Parent is
-[aureooms/js-heap](https://github.com/aureooms/js-heap).
+<img src="https://cdn.rawgit.com/aureooms/js-d-ary-heap/master/media/sketch.svg" width="864">
+
+`d`-ary heap data structure library for JavaScript.
+See [docs](https://aureooms.github.io/js-d-ary-heap).
+Parent is [@aureooms/js-heap](https://github.com/aureooms/js-heap).
 
 ```js
 makeheap( 2 , increasing , swap , array , 0 , array.length ) ;
 //        ^       ^         ^       ^     ^        ^
 //      arity  ordering    swap   input [left  , right[
 //                        method
+//
+let heap = new DAryHeap( 2 , compare.increasing ) ;
+//                       ^            ^
+//                     arity       ordering
+//
 ```
 
 [![NPM license](http://img.shields.io/npm/l/aureooms-js-d-ary-heap.svg?style=flat)](https://raw.githubusercontent.com/aureooms/js-d-ary-heap/master/LICENSE)

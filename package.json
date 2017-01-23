@@ -1,6 +1,6 @@
 {
   "name": "aureooms-js-d-ary-heap",
-  "description": "d-ary heap code bricks for JavaScript",
+  "description": "d-ary heap data structure library for JavaScript",
   "version": "12.0.0",
   "author": "Aurélien Ooms <aurelien.ooms@gmail.com>",
   "ava": {
@@ -40,13 +40,14 @@
     "esdoc": "^0.5.2",
     "nyc": "^10.1.2"
   },
-  "homepage": "http://aureooms.github.io/js-d-ary-heap/",
+  "homepage": "https://aureooms.github.io/js-d-ary-heap",
   "keywords": [
     "binary",
-    "bricks",
     "d-ary",
-    "ender",
     "heap",
+    "data",
+    "structure",
+    "library",
     "javascript",
     "js"
   ],

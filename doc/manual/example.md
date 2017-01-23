@@ -58,7 +58,7 @@ sorted( arity , compare , swap , array , left , right ) ;
 //      # push( value )
 //      # merge( other )
 
-let heap = daryheap. ... ( 2 , compare.increasing ) ;
+let heap = new daryheap. ... ( 2 , compare.increasing ) ;
 //                         ^            ^
 //                       arity       ordering
 ```
