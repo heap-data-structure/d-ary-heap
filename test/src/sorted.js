@@ -1,11 +1,11 @@
 import test from 'ava' ;
 
-import { iota , swap } from "aureooms-js-array" ;
-import compare from "aureooms-js-compare" ;
-import random from "aureooms-js-random" ;
-import { issorted } from "aureooms-js-sort" ;
-import * as it from "aureooms-js-itertools" ;
-import fn from "aureooms-js-functools" ;
+import { iota , swap } from "@aureooms/js-array" ;
+import compare from "@aureooms/js-compare" ;
+import random from "@aureooms/js-random" ;
+import { issorted } from "@aureooms/js-sort" ;
+import * as it from "@aureooms/js-itertools" ;
+import fn from "@aureooms/js-functools" ;
 
 import { sorted } from '../../src' ;
 
