@@ -8,7 +8,7 @@ import 'babel-polyfill' ;
 
 Then
 ```js
-const daryheap = require( 'aureooms-js-d-ary-heap' ) ;
+const daryheap = require( '@aureooms/js-d-ary-heap' ) ;
 // or
-import daryheap from 'aureooms-js-d-ary-heap' ;
+import daryheap from '@aureooms/js-d-ary-heap' ;
 ```

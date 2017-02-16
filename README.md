@@ -19,14 +19,14 @@ let heap = new DAryHeap( 2 , compare.increasing ) ;
 //
 ```
 
-[![NPM license](http://img.shields.io/npm/l/aureooms-js-d-ary-heap.svg?style=flat)](https://raw.githubusercontent.com/aureooms/js-d-ary-heap/master/LICENSE)
-[![NPM version](http://img.shields.io/npm/v/aureooms-js-d-ary-heap.svg?style=flat)](https://www.npmjs.org/package/aureooms-js-d-ary-heap)
+[![NPM license](http://img.shields.io/npm/l/@aureooms/js-d-ary-heap.svg?style=flat)](https://raw.githubusercontent.com/aureooms/js-d-ary-heap/master/LICENSE)
+[![NPM version](http://img.shields.io/npm/v/@aureooms/js-d-ary-heap.svg?style=flat)](https://www.npmjs.org/package/@aureooms/js-d-ary-heap)
 [![Build Status](http://img.shields.io/travis/aureooms/js-d-ary-heap.svg?style=flat)](https://travis-ci.org/aureooms/js-d-ary-heap)
 [![Coverage Status](http://img.shields.io/coveralls/aureooms/js-d-ary-heap.svg?style=flat)](https://coveralls.io/r/aureooms/js-d-ary-heap)
 [![Dependencies Status](http://img.shields.io/david/aureooms/js-d-ary-heap.svg?style=flat)](https://david-dm.org/aureooms/js-d-ary-heap#info=dependencies)
 [![devDependencies Status](http://img.shields.io/david/dev/aureooms/js-d-ary-heap.svg?style=flat)](https://david-dm.org/aureooms/js-d-ary-heap#info=devDependencies)
 [![Code Climate](http://img.shields.io/codeclimate/github/aureooms/js-d-ary-heap.svg?style=flat)](https://codeclimate.com/github/aureooms/js-d-ary-heap)
-[![NPM downloads per month](http://img.shields.io/npm/dm/aureooms-js-d-ary-heap.svg?style=flat)](https://www.npmjs.org/package/aureooms-js-d-ary-heap)
+[![NPM downloads per month](http://img.shields.io/npm/dm/@aureooms/js-d-ary-heap.svg?style=flat)](https://www.npmjs.org/package/@aureooms/js-d-ary-heap)
 [![GitHub issues](http://img.shields.io/github/issues/aureooms/js-d-ary-heap.svg?style=flat)](https://github.com/aureooms/js-d-ary-heap/issues)
 [![Documentation](https://aureooms.github.io/js-d-ary-heap/badge.svg)](https://aureooms.github.io/js-d-ary-heap/source.html)
 
