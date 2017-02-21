@@ -2,7 +2,7 @@ import test from 'ava' ;
 
 import { iota , swap } from "@aureooms/js-array" ;
 import compare from "@aureooms/js-compare" ;
-import random from "@aureooms/js-random" ;
+import { shuffle } from "@aureooms/js-random" ;
 import { issorted } from "@aureooms/js-sort" ;
 import * as it from "@aureooms/js-itertools" ;
 import fn from "@aureooms/js-functools" ;
@@ -19,7 +19,7 @@ function check ( arity ,comparename, compare , ctor , n ) {
 
 		iota( a , 0 , n , 0 ) ;
 
-		random.shuffle( a , 0 , n ) ;
+		shuffle( a , 0 , n ) ;
 
 		var out = it.list( sorted( arity , compare , swap , a , 0 , n ) ) ;
 
