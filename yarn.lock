@@ -14,6 +14,13 @@
   dependencies:
     "@aureooms/js-error" "^3.0.0"
 
+"@aureooms/js-collections-deque@^4.0.1":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@aureooms/js-collections-deque/-/js-collections-deque-4.0.1.tgz#bd8b827cdb597d061525c380dd704e338c77bd5f"
+  integrity sha512-dktRVLyep0sUKpqgtG/JseA232KMdlu9t9ePq2wHcng1dZ3+63qW2C+FlKXBktrT1dU92DDxIL6PqnV97kHA1Q==
+  dependencies:
+    "@aureooms/js-error" "^4.0.1"
+
 "@aureooms/js-compare@1.4.5", "@aureooms/js-compare@^1.4.5":
   version "1.4.5"
   resolved "https://registry.yarnpkg.com/@aureooms/js-compare/-/js-compare-1.4.5.tgz#8531ba35bf2ecb0ec6aca307674276e8dd65c81c"
@@ -23,6 +30,11 @@
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@aureooms/js-error/-/js-error-3.0.0.tgz#c06a455569c4cb26c3792ab9c9f075da707823de"
   integrity sha1-wGpFVWnEyybDeSq5yfB12nB4I94=
+
+"@aureooms/js-error@^4.0.1":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@aureooms/js-error/-/js-error-4.0.1.tgz#be2740b3f31a337e0828930c9b70d38113b4dd77"
+  integrity sha512-zsgs6wmnRsKljlusewYiBaFBM/hIJp43b7OwE9ybpLEL4wfXjGP17cJTTAY8gpzALVFwEA5/flxIK0I6gJJLHQ==
 
 "@aureooms/js-functools@2.0.3", "@aureooms/js-functools@^2.0.3":
   version "2.0.3"
@@ -39,7 +51,15 @@
     "@aureooms/js-itertools" "^3.4.0"
     "@aureooms/js-random" "^2.0.0"
 
-"@aureooms/js-itertools@3.4.0", "@aureooms/js-itertools@^3.4.0":
+"@aureooms/js-itertools@4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@aureooms/js-itertools/-/js-itertools-4.1.0.tgz#c731eaee7de0005c6ea41f2f87cca4bdb2d86ca1"
+  integrity sha512-P9TfwQPuXk5T5z6QMMfwLLyzh9QsEu4sGWcBk/P/waWgim/xqr+LDTOHVo7WU4QAty+/5CBX8DuW7MrPVfXt5A==
+  dependencies:
+    "@aureooms/js-collections-deque" "^4.0.1"
+    "@aureooms/js-error" "^4.0.1"
+
+"@aureooms/js-itertools@^3.4.0":
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/@aureooms/js-itertools/-/js-itertools-3.4.0.tgz#2140cd62e5ae706402afef2e82f924658e0403e2"
   integrity sha512-lVOnOr1Fo+fdaT20wBEz2q+KOQ145yFB0WNbqY6FkeB2xQrW+Xi9bzwG1kQ9fP5eOQnhyXvBdpYK90AkkZufmA==
