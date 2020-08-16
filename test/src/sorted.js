@@ -1,7 +1,7 @@
 import test from 'ava' ;
 
 import { iota , swap } from "@aureooms/js-array" ;
-import compare from "@aureooms/js-compare" ;
+import * as compare from "@aureooms/js-compare" ;
 import { shuffle } from "@aureooms/js-random" ;
 import { issorted } from "@aureooms/js-sort" ;
 import * as it from "@aureooms/js-itertools" ;
