@@ -1,20 +1,38 @@
 {
-  "coverage": "75%",
-  "expectCount": 12,
+  "coverage": "30%",
+  "expectCount": 30,
   "actualCount": 9,
   "files": {
     "src/adt/DAryHeap.js": {
-      "expectCount": 1,
+      "expectCount": 14,
       "actualCount": 0,
       "undocumentLines": [
-        4
+        4,
+        35,
+        43,
+        55,
+        66,
+        77,
+        100,
+        123,
+        144,
+        163,
+        190,
+        214,
+        229,
+        244
       ]
     },
     "src/adt/DAryHeapWithoutReferences.js": {
-      "expectCount": 1,
+      "expectCount": 6,
       "actualCount": 0,
       "undocumentLines": [
-        4
+        4,
+        28,
+        37,
+        48,
+        71,
+        88
       ]
     },
     "src/core/makeheap.js": {
