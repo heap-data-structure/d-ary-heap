@@ -1,10 +1,10 @@
-[@aureooms/js-d-ary-heap](https://aureooms.github.io/js-d-ary-heap)
+[@aureooms/js-d-ary-heap](https://make-github-pseudonymous-again.github.io/js-d-ary-heap)
 ==
 
 <img src="https://cdn.rawgit.com/aureooms/js-d-ary-heap/main/media/sketch.svg" width="864">
 
 `d`-ary heap data structure library for JavaScript.
-See [docs](https://aureooms.github.io/js-d-ary-heap).
+See [docs](https://make-github-pseudonymous-again.github.io/js-d-ary-heap).
 Parent is [@aureooms/js-heap](https://github.com/aureooms/js-heap).
 
 ```js
@@ -31,7 +31,7 @@ let heap = new DAryHeap( 2 , compare.increasing ) ;
 [![Code maintainability](https://img.shields.io/codeclimate/maintainability/aureooms/js-d-ary-heap.svg)](https://codeclimate.com/github/aureooms/js-d-ary-heap/trends/churn)
 [![Code coverage (cov)](https://img.shields.io/codecov/c/gh/aureooms/js-d-ary-heap/main.svg)](https://codecov.io/gh/aureooms/js-d-ary-heap)
 [![Code technical debt](https://img.shields.io/codeclimate/tech-debt/aureooms/js-d-ary-heap.svg)](https://codeclimate.com/github/aureooms/js-d-ary-heap/trends/technical_debt)
-[![Documentation](https://aureooms.github.io/js-d-ary-heap/badge.svg)](https://aureooms.github.io/js-d-ary-heap/source.html)
+[![Documentation](https://make-github-pseudonymous-again.github.io/js-d-ary-heap/badge.svg)](https://make-github-pseudonymous-again.github.io/js-d-ary-heap/source.html)
 [![Package size](https://img.shields.io/bundlephobia/minzip/@aureooms/js-d-ary-heap)](https://bundlephobia.com/result?p=@aureooms/js-d-ary-heap)
 
 ## Description
