@@ -66,7 +66,12 @@
   dependencies:
     "@aureooms/js-collections-deque" "^3.1.0"
 
-"@aureooms/js-random@2.0.0", "@aureooms/js-random@^2.0.0":
+"@aureooms/js-random@3.4.0":
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/@aureooms/js-random/-/js-random-3.4.0.tgz#4d32ab8b0bd30ada20bd84fa65da861c22dfc214"
+  integrity sha512-beThd4HqYLjYOakD/+6nB1ZFaAiGrfzZIT0eOiHUfQe0omiLfRdfcsInZ8vYFgEKM/mN+5WkFPNyldOhRJ1ygA==
+
+"@aureooms/js-random@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@aureooms/js-random/-/js-random-2.0.0.tgz#f62c6954ed79bd9a520197125ee3cfbe14b00d72"
   integrity sha1-9ixpVO15vZpSAZcSXuPPvhSwDXI=
