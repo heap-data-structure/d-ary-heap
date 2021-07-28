@@ -11,14 +11,18 @@ See [docs](https://heap-data-structure.github.io/d-ary-heap).
 Parent is [@heap-data-structure](https://github.com/heap-data-structure/about).
 
 ```js
+import {increasing} from '@total-order/primitive';
+import {makeheap} from '@heap-data-structure/d-ary-heap';
 makeheap( 2 , increasing , swap , array , 0 , array.length ) ;
 //        ^       ^         ^       ^     ^        ^
 //      arity  ordering    swap   input [left  , right[
 //                        method
 //
-let heap = new DAryHeap( 2 , compare.increasing ) ;
-//                       ^            ^
-//                     arity       ordering
+
+import {DAryHeap} from '@heap-data-structure/d-ary-heap';
+let heap = new DAryHeap( 2 , increasing ) ;
+//                       ^       ^
+//                     arity  ordering
 //
 ```
 
