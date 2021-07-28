@@ -1,5 +1,4 @@
-
-import nextchild from './nextchild.js' ;
+import nextchild from './nextchild.js';
 
 /**
  * Sifts down a node.
@@ -13,38 +12,34 @@ import nextchild from './nextchild.js' ;
  * @param {int} k is the target node
  */
 
-export default function siftdown ( arity, compare, swap, a, i, j, k ) {
-
+export default function siftdown(arity, compare, swap, a, i, j, k) {
 	let current = k - i;
 
-	while ( true ) {
-
-		// address of the first child in a zero-based
+	while (true) {
+		// Address of the first child in a zero-based
 		// d-ary heap
 
 		const firstchild = arity * current + 1;
 
-		// if current node has no children
+		// If current node has no children
 		// then we are done
 
-		if ( firstchild >= j - i ) break;
+		if (firstchild >= j - i) break;
 
-		// if current value is smaller than its smallest
+		// If current value is smaller than its smallest
 		// child then we are done
 
-		const candidate = nextchild( arity, compare, swap, a, i + firstchild, j );
+		const candidate = nextchild(arity, compare, swap, a, i + firstchild, j);
 
-		if ( compare( a[i + current], a[candidate] ) <= 0 ) break;
+		if (compare(a[i + current], a[candidate]) <= 0) break;
 
-		// otherwise
+		// Otherwise
 		// swap with smallest child
 
-		swap( a, i + current, candidate );
+		swap(a, i + current, candidate);
 
 		current = candidate - i;
-
 	}
 
 	return i + current;
-
 }

@@ -1,5 +1,3 @@
-
-
 /**
  * Computes which child is the smallest according
  * to a comparison function.
@@ -14,20 +12,16 @@
  * @param {int} j - 1 is the last leaf
  */
 
-export default function nextchild ( arity, compare, swap, a, i, j ) {
-
-	const k = i + Math.min( arity, j - i );
+export default function nextchild(arity, compare, swap, a, i, j) {
+	const k = i + Math.min(arity, j - i);
 
 	let best = i;
 
-	for ( ++i ; i < k ; ++i ) {
-
-		if ( compare( a[i], a[best] ) < 0 ) {
+	for (++i; i < k; ++i) {
+		if (compare(a[i], a[best]) < 0) {
 			best = i;
 		}
-
 	}
 
 	return best;
-
 }

@@ -1,6 +1,5 @@
-
-import pull from './pull.js' ;
-import pop from './pop.js' ;
+import pull from './pull.js';
+import pop from './pop.js';
 
 /**
  * Removes a target element from a d-ary heap.
@@ -16,14 +15,12 @@ import pop from './pop.js' ;
  * @param {int} k is the target node
  */
 
-export default function remove ( arity, compare, swap, a, i, j, k ) {
+export default function remove(arity, compare, swap, a, i, j, k) {
+	// Pull target node all the way up
 
-	// pull target node all the way up
+	pull(arity, compare, swap, a, i, j, k);
 
-	pull( arity, compare, swap, a, i, j, k );
+	// Pop target node
 
-	// pop target node
-
-	return pop( arity, compare, swap, a, i, j );
-
+	return pop(arity, compare, swap, a, i, j);
 }

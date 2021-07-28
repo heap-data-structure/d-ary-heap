@@ -1,5 +1,4 @@
-
-import siftdown from './siftdown.js' ;
+import siftdown from './siftdown.js';
 
 /**
  * Builds a heap in O(n) operations.
@@ -13,12 +12,8 @@ import siftdown from './siftdown.js' ;
  *
  */
 
-export default function makeheap ( arity , compare , swap , a , i , j ) {
-
-	for ( let k = i + ( j - i + arity - 2 ) / arity | 0 ; k --> i ; ) {
-
-		siftdown( arity , compare , swap , a , i , j , k ) ;
-
+export default function makeheap(arity, compare, swap, a, i, j) {
+	for (let k = (i + (j - i + arity - 2) / arity) | 0; k-- > i; ) {
+		siftdown(arity, compare, swap, a, i, j, k);
 	}
-
 }

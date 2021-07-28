@@ -1,4 +1,3 @@
-
 /**
  * Sifts a node up to the root as if its priority was the highest.
  *
@@ -11,25 +10,21 @@
  * @param {int} k is the target node
  */
 
-export default function pull ( arity, compare, swap, a, i, j, k ) {
-
+export default function pull(arity, compare, swap, a, i, j, k) {
 	let current = k - i;
 
-	// while we are not the root
+	// While we are not the root
 
-	while ( current !== 0 ) {
-
-		// address of the parent in a zero-based
+	while (current !== 0) {
+		// Address of the parent in a zero-based
 		// d-ary heap
 
-		const parent = i + Math.floor( ( current - 1 ) / arity );
+		const parent = i + Math.floor((current - 1) / arity);
 
-		// swap with parent
+		// Swap with parent
 
-		swap( a, i + current, parent );
+		swap(a, i + current, parent);
 
 		current = parent - i;
-
 	}
-
 }

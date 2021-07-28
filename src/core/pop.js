@@ -1,5 +1,4 @@
-
-import siftdown from './siftdown.js' ;
+import siftdown from './siftdown.js';
 
 /**
  * Pops the root from a d-ary heap.
@@ -14,26 +13,21 @@ import siftdown from './siftdown.js' ;
  * @param {int} j - 1 is the last leaf
  */
 
-export default function pop ( arity, compare, swap, a, i, j ) {
-
-	// decrement size of heap
+export default function pop(arity, compare, swap, a, i, j) {
+	// Decrement size of heap
 
 	--j;
 
-
-	// put last leaf at root
+	// Put last leaf at root
 
 	const popped = a[i];
 	a[i] = a[j];
 
+	// Sift down the new root
 
-	// sift down the new root
+	siftdown(arity, compare, swap, a, i, j, i);
 
-	siftdown( arity, compare, swap, a, i, j, i );
-
-
-	// return old root
+	// Return old root
 
 	return popped;
-
 }

@@ -1,5 +1,4 @@
-
-import siftup from './siftup.js' ;
+import siftup from './siftup.js';
 
 /**
  * Inserts the jth element of an array in an existing
@@ -15,10 +14,8 @@ import siftup from './siftup.js' ;
  * @param {int} j - 1 is the new leaf
  */
 
-export default function push ( arity, compare, swap, a, i, j ) {
+export default function push(arity, compare, swap, a, i, j) {
+	// Sift up the new leaf
 
-	// sift up the new leaf
-
-	return siftup( arity, compare, swap, a, i, j + 1, j );
-
+	return siftup(arity, compare, swap, a, i, j + 1, j);
 }

@@ -1,104 +1,80 @@
+import pop from '../core/pop.js';
+import push from '../core/push.js';
+import merge from '../core/merge.js';
 
-import { pop , push , merge } from '../core/index.js' ;
-
-export default function DAryHeapWithoutReferences ( arity, compare ) {
-
-	// arity of this heap
+export default function DAryHeapWithoutReferences(arity, compare) {
+	// Arity of this heap
 
 	this.arity = arity;
 
-
-	// the comparison function
+	// The comparison function
 
 	this.compare = compare;
 
-
-	// array used to store values
+	// Array used to store values
 
 	this.array = [];
 
-
-	// size of the heap
+	// Size of the heap
 
 	this.length = 0;
-
 }
 
-
-DAryHeapWithoutReferences.prototype.swap = function ( a, i, j ) {
-
+DAryHeapWithoutReferences.prototype.swap = function (a, i, j) {
 	const tmp = a[i];
 	a[i] = a[j];
 	a[j] = tmp;
-
 };
 
-
 DAryHeapWithoutReferences.prototype.head = function () {
-
-	if ( this.length === 0 ) {
+	if (this.length === 0) {
 		return undefined;
 	}
 
 	return this.array[0];
-
 };
 
-
 DAryHeapWithoutReferences.prototype.pop = function () {
-
-	var a, i, j, value;
-
-	if ( this.length === 0 ) {
+	if (this.length === 0) {
 		return undefined;
 	}
 
-	a = this.array;
-	i = 0;
-	j = a.length;
+	const a = this.array;
+	const i = 0;
+	const j = a.length;
 
-	value = pop( this.arity, this.compare, this.swap, a, i, j );
+	const value = pop(this.arity, this.compare, this.swap, a, i, j);
 
 	a.pop();
 
 	--this.length;
 
 	return value;
-
 };
 
+DAryHeapWithoutReferences.prototype.push = function (value) {
+	const a = this.array;
+	const i = 0;
+	const j = a.length;
 
-DAryHeapWithoutReferences.prototype.push = function ( value ) {
+	a.push(value);
 
-	var a, i, j;
-
-	a = this.array;
-	i = 0;
-	j = a.length;
-
-
-	a.push( value );
-
-	push( this.arity, this.compare, this.swap, a, i, j );
+	push(this.arity, this.compare, this.swap, a, i, j);
 
 	++this.length;
-
 };
 
-DAryHeapWithoutReferences.prototype.merge = function ( other ) {
+DAryHeapWithoutReferences.prototype.merge = function (other) {
+	const a = this.array;
+	const i = 0;
+	const j = a.length;
 
-	var a, i, j, k;
+	const b = a.concat(other.array);
+	this.array = b;
 
-	a = this.array;
-	i = 0;
-	j = a.length;
+	const k = b.length;
 
-	a = this.array = a.concat( other.array );
-
-	k = a.length;
-
-	merge( this.arity, this.compare, this.swap, a, i, j, k );
+	merge(this.arity, this.compare, this.swap, b, i, j, k);
 
 	this.length += other.length;
-
 };
