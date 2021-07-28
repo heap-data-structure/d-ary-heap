@@ -10,7 +10,7 @@ import 'regenerator-runtime/runtime' ;
 
 Then
 ```js
-const daryheap = require( '@aureooms/js-d-ary-heap' ) ;
+const daryheap = require( '@heap-data-structure/d-ary-heap' ) ;
 // or
-import daryheap from '@aureooms/js-d-ary-heap' ;
+import daryheap from '@heap-data-structure/d-ary-heap' ;
 ```

@@ -1,11 +1,16 @@
 import test from 'ava' ;
 
-import { iota , swap } from "@aureooms/js-array" ;
-import * as compare from "@aureooms/js-compare" ;
-import { shuffle } from "@aureooms/js-random" ;
-import { issorted } from "@aureooms/js-sort" ;
-import * as it from "@aureooms/js-itertools" ;
-import fn from "@aureooms/js-functools" ;
+import { swap } from "@aureooms/js-array" ;
+import {increasing, decreasing} from '@total-order/primitive';
+import { shuffle } from "@randomized/random" ;
+import { isSorted } from "@comparison-sorting/is-sorted" ;
+import {map} from '@iterable-iterator/map';
+import {_chain as chain} from '@iterable-iterator/chain';
+import {list} from '@iterable-iterator/list';
+import {range} from '@iterable-iterator/range';
+import {exhaust} from '@iterable-iterator/consume';
+import {product} from '@set-theory/cartesian-product';
+import {chain as fchain, partial, star} from "@functional-abstraction/functools" ;
 
 import { sorted } from '../../src' ;
 
@@ -15,33 +20,31 @@ function check ( arity ,comparename, compare , ctor , n ) {
 
 	test( title , t => {
 
-		var a = new ctor( n ) ;
-
-		iota( a , 0 , n , 0 ) ;
+		var a = ctor.from( range(n) ) ;
 
 		shuffle( a , 0 , n ) ;
 
-		var out = it.list( sorted( arity , compare , swap , a , 0 , n ) ) ;
+		var out = list( sorted( arity , compare , swap , a , 0 , n ) ) ;
 
 		t.deepEqual( a.length , n , "size stays the same size" ) ;
 
-		t.deepEqual( issorted( compare , out , 0 , n ) , n , "output is sorted" ) ;
+		t.true( isSorted( compare , out , 0 , n ) , "output is sorted" ) ;
 
 	} ) ;
 
 }
 
-it.exhaust( it.map(
+exhaust( map(
 
-fn.chain( [ it.chain , it.list , fn.partial( fn.star , [ check ] ) ] ) ,
+fchain( [ chain , list , partial( star , [ check ] ) ] ) ,
 
-it.product( [
+product( [
 
 	[[1],[2],[3],[4],[5]],
 
 	[
-		["increasing" , compare.increasing ] ,
-		["decreasing" , compare.decreasing ]
+		["increasing" , increasing ] ,
+		["decreasing" , decreasing ]
 	],
 	[
 		[ Array ],

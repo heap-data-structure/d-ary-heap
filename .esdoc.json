@@ -35,7 +35,7 @@
           "autoPrivate": true
         },
         "brand": {
-          "title": "aureooms/js-d-ary-heap"
+          "title": "heap-data-structure/d-ary-heap"
         },
         "test": {
           "type": "ava",
