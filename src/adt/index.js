@@ -1,5 +1,5 @@
-import DAryHeap from './DAryHeap' ;
-import DAryHeapWithoutReferences from './DAryHeapWithoutReferences' ;
+import DAryHeap from './DAryHeap.js' ;
+import DAryHeapWithoutReferences from './DAryHeapWithoutReferences.js' ;
 
 export default {
 	DAryHeap ,

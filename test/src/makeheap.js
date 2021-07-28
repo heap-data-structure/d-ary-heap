@@ -12,7 +12,7 @@ import {exhaust} from '@iterable-iterator/consume';
 import {product} from '@set-theory/cartesian-product';
 import {chain as fchain, partial, star} from "@functional-abstraction/functools" ;
 
-import { makeheap , pop } from '../../src' ;
+import { makeheap , pop } from '../../src/index.js' ;
 
 var check = function ( arity ,comparename, compare , ctor , n ) {
 

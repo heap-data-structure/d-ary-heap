@@ -1,5 +1,5 @@
 
-import { pop , push , merge } from '../core' ;
+import { pop , push , merge } from '../core/index.js' ;
 
 export default function DAryHeapWithoutReferences ( arity, compare ) {
 

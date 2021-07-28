@@ -1,13 +1,13 @@
-import makeheap from './makeheap' ;
-import merge from './merge' ;
-import nextchild from './nextchild' ;
-import pop from './pop' ;
-import pull from './pull' ;
-import push from './push' ;
-import remove from './remove' ;
-import siftdown from './siftdown' ;
-import siftup from './siftup' ;
-import sorted from './sorted' ;
+import makeheap from './makeheap.js' ;
+import merge from './merge.js' ;
+import nextchild from './nextchild.js' ;
+import pop from './pop.js' ;
+import pull from './pull.js' ;
+import push from './push.js' ;
+import remove from './remove.js' ;
+import siftdown from './siftdown.js' ;
+import siftup from './siftup.js' ;
+import sorted from './sorted.js' ;
 
 export default {
 	makeheap ,

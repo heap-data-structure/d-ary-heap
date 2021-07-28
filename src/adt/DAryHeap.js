@@ -1,5 +1,5 @@
 
-import { pop , push , merge , siftup , siftdown , remove } from '../core' ;
+import { pop , push , merge , siftup , siftdown , remove } from '../core/index.js' ;
 
 export default function DAryHeap ( arity, compare ) {
 

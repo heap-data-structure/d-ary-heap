@@ -1,5 +1,5 @@
 
-import siftup from './siftup' ;
+import siftup from './siftup.js' ;
 
 /**
  * Merges heaps at intervals [i, j[ and [j, k[ in array *a*

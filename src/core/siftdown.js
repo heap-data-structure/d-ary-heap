@@ -1,5 +1,5 @@
 
-import nextchild from './nextchild' ;
+import nextchild from './nextchild.js' ;
 
 /**
  * Sifts down a node.

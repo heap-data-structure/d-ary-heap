@@ -3,7 +3,7 @@ import ava from 'ava' ;
 
 import * as spec from '@heap-data-structure/specification' ;
 
-import { DAryHeap , DAryHeapWithoutReferences } from '../../src' ;
+import { DAryHeap , DAryHeapWithoutReferences } from '../../src/index.js' ;
 
 const heapswithreferences = [
 

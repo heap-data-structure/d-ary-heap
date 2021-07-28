@@ -1,7 +1,7 @@
 import {
 	DAryHeap ,
 	DAryHeapWithoutReferences ,
-} from './adt' ;
+} from './adt/index.js' ;
 
 import {
 	makeheap ,
@@ -14,7 +14,7 @@ import {
 	siftdown ,
 	siftup ,
 	sorted ,
-} from './core' ;
+} from './core/index.js' ;
 
 export default {
 	DAryHeap ,

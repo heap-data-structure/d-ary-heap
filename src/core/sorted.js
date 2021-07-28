@@ -1,6 +1,6 @@
 
-import makeheap from './makeheap' ;
-import pop from './pop' ;
+import makeheap from './makeheap.js' ;
+import pop from './pop.js' ;
 
 export default function* sorted ( arity , compare , swap , a , i , j ) {
 

@@ -1,5 +1,5 @@
 
-import siftdown from './siftdown' ;
+import siftdown from './siftdown.js' ;
 
 /**
  * Builds a heap in O(n) operations.

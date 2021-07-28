@@ -1,5 +1,5 @@
 
-import siftdown from './siftdown' ;
+import siftdown from './siftdown.js' ;
 
 /**
  * Pops the root from a d-ary heap.

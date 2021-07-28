@@ -1,5 +1,5 @@
 
-import siftup from './siftup' ;
+import siftup from './siftup.js' ;
 
 /**
  * Inserts the jth element of an array in an existing
