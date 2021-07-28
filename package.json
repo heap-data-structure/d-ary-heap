@@ -104,6 +104,7 @@
     ],
     "env": {
       "test": {
+        "sourceMaps": "inline",
         "presets": [
           "babel-preset-power-assert"
         ],
@@ -118,10 +119,10 @@
               ]
             }
           ]
-        ],
-        "sourceMaps": "inline"
+        ]
       },
       "development": {
+        "sourceMaps": "inline",
         "presets": [
           "babel-preset-power-assert"
         ],
@@ -136,10 +137,10 @@
               ]
             }
           ]
-        ],
-        "sourceMaps": "inline"
+        ]
       },
       "production": {
+        "sourceMaps": "inline",
         "plugins": [
           "babel-plugin-unassert",
           [
@@ -152,8 +153,7 @@
               ]
             }
           ]
-        ],
-        "sourceMaps": "inline"
+        ]
       }
     }
   }
