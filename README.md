@@ -24,7 +24,7 @@ let heap = new DAryHeap( 2 , compare.increasing ) ;
 
 [![License](https://img.shields.io/github/license/heap-data-structure/d-ary-heap.svg)](https://raw.githubusercontent.com/heap-data-structure/d-ary-heap/main/LICENSE)
 [![Version](https://img.shields.io/npm/v/@heap-data-structure/d-ary-heap.svg)](https://www.npmjs.org/package/@heap-data-structure/d-ary-heap)
-[![Build](https://img.shields.io/travis/heap-data-structure/d-ary-heap/main.svg)](https://travis-ci.org/heap-data-structure/d-ary-heap/branches)
+[![Build](https://img.shields.io/travis/heap-data-structure/d-ary-heap/main.svg)](https://travis-ci.com/heap-data-structure/d-ary-heap/branches)
 [![Dependencies](https://img.shields.io/david/heap-data-structure/d-ary-heap.svg)](https://david-dm.org/heap-data-structure/d-ary-heap)
 [![Dev dependencies](https://img.shields.io/david/dev/heap-data-structure/d-ary-heap.svg)](https://david-dm.org/heap-data-structure/d-ary-heap?type=dev)
 [![GitHub issues](https://img.shields.io/github/issues/heap-data-structure/d-ary-heap.svg)](https://github.com/heap-data-structure/d-ary-heap/issues)
