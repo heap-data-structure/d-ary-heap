@@ -1,74 +1,74 @@
 window.esdocSearchIndex = [
   [
-    "@aureooms/js-d-ary-heap/src/adt/daryheap.js~daryheap",
+    "@heap-data-structure/d-ary-heap/src/adt/daryheap.js~daryheap",
     "function/index.html#static-function-DAryHeap",
-    "<span>DAryHeap</span> <span class=\"search-result-import-path\">@aureooms/js-d-ary-heap/src/adt/DAryHeap.js</span>",
+    "<span>DAryHeap</span> <span class=\"search-result-import-path\">@heap-data-structure/d-ary-heap/src/adt/DAryHeap.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-d-ary-heap/src/adt/daryheapwithoutreferences.js~daryheapwithoutreferences",
+    "@heap-data-structure/d-ary-heap/src/adt/daryheapwithoutreferences.js~daryheapwithoutreferences",
     "function/index.html#static-function-DAryHeapWithoutReferences",
-    "<span>DAryHeapWithoutReferences</span> <span class=\"search-result-import-path\">@aureooms/js-d-ary-heap/src/adt/DAryHeapWithoutReferences.js</span>",
+    "<span>DAryHeapWithoutReferences</span> <span class=\"search-result-import-path\">@heap-data-structure/d-ary-heap/src/adt/DAryHeapWithoutReferences.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-d-ary-heap/src/core/makeheap.js~makeheap",
+    "@heap-data-structure/d-ary-heap/src/core/makeheap.js~makeheap",
     "function/index.html#static-function-makeheap",
-    "<span>makeheap</span> <span class=\"search-result-import-path\">@aureooms/js-d-ary-heap/src/core/makeheap.js</span>",
+    "<span>makeheap</span> <span class=\"search-result-import-path\">@heap-data-structure/d-ary-heap/src/core/makeheap.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-d-ary-heap/src/core/merge.js~merge",
+    "@heap-data-structure/d-ary-heap/src/core/merge.js~merge",
     "function/index.html#static-function-merge",
-    "<span>merge</span> <span class=\"search-result-import-path\">@aureooms/js-d-ary-heap/src/core/merge.js</span>",
+    "<span>merge</span> <span class=\"search-result-import-path\">@heap-data-structure/d-ary-heap/src/core/merge.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-d-ary-heap/src/core/nextchild.js~nextchild",
+    "@heap-data-structure/d-ary-heap/src/core/nextchild.js~nextchild",
     "function/index.html#static-function-nextchild",
-    "<span>nextchild</span> <span class=\"search-result-import-path\">@aureooms/js-d-ary-heap/src/core/nextchild.js</span>",
+    "<span>nextchild</span> <span class=\"search-result-import-path\">@heap-data-structure/d-ary-heap/src/core/nextchild.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-d-ary-heap/src/core/pop.js~pop",
+    "@heap-data-structure/d-ary-heap/src/core/pop.js~pop",
     "function/index.html#static-function-pop",
-    "<span>pop</span> <span class=\"search-result-import-path\">@aureooms/js-d-ary-heap/src/core/pop.js</span>",
+    "<span>pop</span> <span class=\"search-result-import-path\">@heap-data-structure/d-ary-heap/src/core/pop.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-d-ary-heap/src/core/pull.js~pull",
+    "@heap-data-structure/d-ary-heap/src/core/pull.js~pull",
     "function/index.html#static-function-pull",
-    "<span>pull</span> <span class=\"search-result-import-path\">@aureooms/js-d-ary-heap/src/core/pull.js</span>",
+    "<span>pull</span> <span class=\"search-result-import-path\">@heap-data-structure/d-ary-heap/src/core/pull.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-d-ary-heap/src/core/push.js~push",
+    "@heap-data-structure/d-ary-heap/src/core/push.js~push",
     "function/index.html#static-function-push",
-    "<span>push</span> <span class=\"search-result-import-path\">@aureooms/js-d-ary-heap/src/core/push.js</span>",
+    "<span>push</span> <span class=\"search-result-import-path\">@heap-data-structure/d-ary-heap/src/core/push.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-d-ary-heap/src/core/remove.js~remove",
+    "@heap-data-structure/d-ary-heap/src/core/remove.js~remove",
     "function/index.html#static-function-remove",
-    "<span>remove</span> <span class=\"search-result-import-path\">@aureooms/js-d-ary-heap/src/core/remove.js</span>",
+    "<span>remove</span> <span class=\"search-result-import-path\">@heap-data-structure/d-ary-heap/src/core/remove.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-d-ary-heap/src/core/siftdown.js~siftdown",
+    "@heap-data-structure/d-ary-heap/src/core/siftdown.js~siftdown",
     "function/index.html#static-function-siftdown",
-    "<span>siftdown</span> <span class=\"search-result-import-path\">@aureooms/js-d-ary-heap/src/core/siftdown.js</span>",
+    "<span>siftdown</span> <span class=\"search-result-import-path\">@heap-data-structure/d-ary-heap/src/core/siftdown.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-d-ary-heap/src/core/siftup.js~siftup",
+    "@heap-data-structure/d-ary-heap/src/core/siftup.js~siftup",
     "function/index.html#static-function-siftup",
-    "<span>siftup</span> <span class=\"search-result-import-path\">@aureooms/js-d-ary-heap/src/core/siftup.js</span>",
+    "<span>siftup</span> <span class=\"search-result-import-path\">@heap-data-structure/d-ary-heap/src/core/siftup.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-d-ary-heap/src/core/sorted.js~sorted",
+    "@heap-data-structure/d-ary-heap/src/core/sorted.js~sorted",
     "function/index.html#static-function-sorted",
-    "<span>sorted</span> <span class=\"search-result-import-path\">@aureooms/js-d-ary-heap/src/core/sorted.js</span>",
+    "<span>sorted</span> <span class=\"search-result-import-path\">@heap-data-structure/d-ary-heap/src/core/sorted.js</span>",
     "function"
   ],
   [
@@ -363,18 +363,6 @@ window.esdocSearchIndex = [
     "src/adt/daryheapwithoutreferences.js",
     "file/src/adt/DAryHeapWithoutReferences.js.html",
     "src/adt/DAryHeapWithoutReferences.js",
-    "file"
-  ],
-  [
-    "src/adt/index.js",
-    "file/src/adt/index.js.html",
-    "src/adt/index.js",
-    "file"
-  ],
-  [
-    "src/core/index.js",
-    "file/src/core/index.js.html",
-    "src/core/index.js",
     "file"
   ],
   [

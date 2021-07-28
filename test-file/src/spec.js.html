@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../">
-  <title data-ice="title">src/spec.js | aureooms/js-d-ary-heap</title>
+  <title data-ice="title">src/spec.js | @heap-data-structure/d-ary-heap</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
   <script src="script/manual.js"></script>
-<script src="./inject/script/0-header.js"></script><link rel="stylesheet" href="./inject/css/0-style.css"><meta name="description" content="d-ary heap data structure library for JavaScript"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="aureooms/js-d-ary-heap"><meta property="twitter:description" content="d-ary heap data structure library for JavaScript"></head>
+<link rel="stylesheet" href="./inject/css/0-style.css"><script src="./inject/script/0-header.js"></script><meta name="description" content="d-ary heap data structure library for JavaScript"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="@heap-data-structure/d-ary-heap"><meta property="twitter:description" content="d-ary heap data structure library for JavaScript"></head>
 <body class="layout-container" data-ice="rootContainer">
 
 <header>
@@ -24,7 +24,7 @@
   </span>
     <ul class="search-result"></ul>
   </div>
-<a style="position:relative; top:3px;" href="https://github.com/aureooms/js-d-ary-heap.git"><img width="20px" src="./image/github.png"></a></header>
+<a style="position:relative; top:3px;" href="https://github.com/heap-data-structure/d-ary-heap"><img width="20px" src="./image/github.png"></a></header>
 
 <nav class="navigation" data-ice="nav"><div>
   <ul>
@@ -46,35 +46,46 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/spec.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">
-import ava from &apos;ava&apos; ;
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">// eslint-disable-next-line ava/use-test
+import ava from &apos;ava&apos;;
 
-import * as spec from &apos;@aureooms/js-heap-spec&apos; ;
+import * as spec from &apos;@heap-data-structure/specification&apos;;
 
-import { DAryHeap , DAryHeapWithoutReferences } from &apos;../../src&apos; ;
+import {DAryHeap, DAryHeapWithoutReferences} from &apos;../../src/index.js&apos;;
 
 const heapswithreferences = [
-
-	[&quot;DAryHeap, unary&quot;, compare =&gt; new DAryHeap( 1 , compare ) ],
-	[&quot;DAryHeap, binary&quot;, compare =&gt; new DAryHeap( 2 , compare ) ],
-	[&quot;DAryHeap, ternary&quot;, compare =&gt; new DAryHeap( 3 , compare ) ],
-	[&quot;DAryHeap, 4-ary&quot;, compare =&gt; new DAryHeap( 4 , compare ) ],
-	[&quot;DAryHeap, 5-ary&quot;, compare =&gt; new DAryHeap( 5 , compare ) ],
-
-] ;
+	[&apos;DAryHeap, unary&apos;, (compare) =&gt; new DAryHeap(1, compare)],
+	[&apos;DAryHeap, binary&apos;, (compare) =&gt; new DAryHeap(2, compare)],
+	[&apos;DAryHeap, ternary&apos;, (compare) =&gt; new DAryHeap(3, compare)],
+	[&apos;DAryHeap, 4-ary&apos;, (compare) =&gt; new DAryHeap(4, compare)],
+	[&apos;DAryHeap, 5-ary&apos;, (compare) =&gt; new DAryHeap(5, compare)],
+];
 
 const heapswithoutreferences = [
+	[
+		&apos;DAryHeapWithoutReferences, unary&apos;,
+		(compare) =&gt; new DAryHeapWithoutReferences(1, compare),
+	],
+	[
+		&apos;DAryHeapWithoutReferences, binary&apos;,
+		(compare) =&gt; new DAryHeapWithoutReferences(2, compare),
+	],
+	[
+		&apos;DAryHeapWithoutReferences, ternary&apos;,
+		(compare) =&gt; new DAryHeapWithoutReferences(3, compare),
+	],
+	[
+		&apos;DAryHeapWithoutReferences, 4-ary&apos;,
+		(compare) =&gt; new DAryHeapWithoutReferences(4, compare),
+	],
+	[
+		&apos;DAryHeapWithoutReferences, 5-ary&apos;,
+		(compare) =&gt; new DAryHeapWithoutReferences(5, compare),
+	],
+];
 
-	[&quot;DAryHeapWithoutReferences, unary&quot;, compare =&gt; new DAryHeapWithoutReferences( 1 , compare ) ],
-	[&quot;DAryHeapWithoutReferences, binary&quot;, compare =&gt; new DAryHeapWithoutReferences( 2 , compare ) ],
-	[&quot;DAryHeapWithoutReferences, ternary&quot;, compare =&gt; new DAryHeapWithoutReferences( 3 , compare ) ],
-	[&quot;DAryHeapWithoutReferences, 4-ary&quot;, compare =&gt; new DAryHeapWithoutReferences( 4 , compare ) ],
-	[&quot;DAryHeapWithoutReferences, 5-ary&quot;, compare =&gt; new DAryHeapWithoutReferences( 5 , compare ) ],
-
-] ;
-
-spec.test( ava , heapswithreferences , { references : true , length : true } ) ;
-spec.test( ava , heapswithoutreferences , { references : false , length : true } ) ;
+spec.test(ava, heapswithreferences, {references: true, length: true});
+spec.test(ava, heapswithoutreferences, {references: false, length: true});
 </code></pre>
 
 </div>

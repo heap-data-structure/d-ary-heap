@@ -7,32 +7,32 @@
       "expectCount": 14,
       "actualCount": 0,
       "undocumentLines": [
-        4,
-        35,
-        43,
-        55,
-        66,
-        77,
-        100,
-        123,
-        144,
-        163,
-        190,
-        214,
-        229,
-        244
+        8,
+        32,
+        37,
+        46,
+        54,
+        62,
+        80,
+        98,
+        114,
+        127,
+        150,
+        164,
+        175,
+        186
       ]
     },
     "src/adt/DAryHeapWithoutReferences.js": {
       "expectCount": 6,
       "actualCount": 0,
       "undocumentLines": [
-        4,
-        28,
+        5,
+        23,
+        29,
         37,
-        48,
-        71,
-        88
+        55,
+        67
       ]
     },
     "src/core/makeheap.js": {
@@ -84,7 +84,7 @@
       "expectCount": 1,
       "actualCount": 0,
       "undocumentLines": [
-        5
+        4
       ]
     }
   }

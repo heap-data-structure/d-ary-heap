@@ -567,9 +567,9 @@
     "__docId__": 48,
     "kind": "file",
     "name": "src/adt/DAryHeap.js",
-    "content": "\nimport { pop , push , merge , siftup , siftdown , remove } from '../core' ;\n\nexport default function DAryHeap ( arity, compare ) {\n\n\t// arity of this heap\n\n\tthis.arity = arity;\n\n\n\t// the comparison function\n\n\tthis.compare = function ( a, b ) {\n\t\treturn compare( a.value, b.value );\n\t};\n\n\n\t// the original comparison function\n\n\tthis._compare = compare;\n\n\n\t// array used to store values\n\n\tthis.array = [];\n\n\n\t// size of the heap\n\n\tthis.length = 0;\n\n}\n\n\nDAryHeap.Reference = function ( index, value ) {\n\n\tthis.index = index;\n\tthis.value = value;\n\n};\n\n\nDAryHeap.prototype.swap = function ( a, i, j ) {\n\n\tconst tmp = a[i];\n\ta[i] = a[j];\n\ta[j] = tmp;\n\n\ta[i].index = i;\n\ta[j].index = j;\n\n};\n\n\nDAryHeap.prototype.head = function () {\n\n\tif ( this.length === 0 ) {\n\t\treturn undefined;\n\t}\n\n\treturn this.array[0].value;\n\n};\n\n\nDAryHeap.prototype.headreference = function () {\n\n\tif ( this.length === 0 ) {\n\t\treturn null;\n\t}\n\n\treturn this.array[0];\n\n};\n\n\nDAryHeap.prototype.pop = function () {\n\n\tvar a, i, j, reference;\n\n\tif ( this.length === 0 ) {\n\t\treturn undefined;\n\t}\n\n\ta = this.array;\n\ti = 0;\n\tj = a.length;\n\n\treference = pop( this.arity, this.compare, this.swap, a, i, j );\n\n\ta.pop();\n\n\t--this.length;\n\n\treturn reference.value;\n\n};\n\n\nDAryHeap.prototype.popreference = function () {\n\n\tvar a, i, j, reference;\n\n\tif ( this.length === 0 ) {\n\t\treturn null;\n\t}\n\n\ta = this.array;\n\ti = 0;\n\tj = a.length;\n\n\treference = pop( this.arity, this.compare, this.swap, a, i, j );\n\n\ta.pop();\n\n\t--this.length;\n\n\treturn reference;\n\n};\n\n\nDAryHeap.prototype.push = function ( value ) {\n\n\tvar a, i, j, reference;\n\n\ta = this.array;\n\ti = 0;\n\tj = a.length;\n\n\treference = new DAryHeap.Reference( j, value );\n\n\ta.push( reference );\n\n\tpush( this.arity, this.compare, this.swap, a, i, j );\n\n\t++this.length;\n\n\treturn reference;\n\n};\n\n\nDAryHeap.prototype.pushreference = function ( reference ) {\n\n\tvar a, i, j;\n\n\ta = this.array;\n\ti = 0;\n\tj = a.length;\n\n\n\treference.index = j;\n\ta.push( reference );\n\n\tpush( this.arity, this.compare, this.swap, a, i, j );\n\n\t++this.length;\n\n};\n\n\nDAryHeap.prototype.merge = function ( other ) {\n\n\tvar a, i, j, k, t;\n\n\ta = this.array;\n\ti = 0;\n\tj = a.length;\n\n\t// concat arrays of both heaps\n\n\ta = this.array = a.concat( other.array );\n\n\tk = a.length;\n\n\t// update index of concatenated elements\n\n\tfor ( t = j ; t < k ; ++t ) {\n\t\ta[t].index = t;\n\t}\n\n\tmerge( this.arity, this.compare, this.swap, a, i, j, k );\n\n\tthis.length += other.length;\n\n};\n\n\nDAryHeap.prototype.update = function ( reference, value ) {\n\n\tvar d;\n\n\td = this._compare( value, reference.value );\n\n\tif ( d < 0 ) {\n\t\tthis.decreasekey( reference, value );\n\t}\n\n\telse if ( d > 0 ) {\n\t\tthis.increasekey( reference, value );\n\t}\n\n\telse {\n\n\t\t// d === 0 does not imply reference.value === value\n\n\t\treference.value = value;\n\n\t}\n\n};\n\nDAryHeap.prototype.decreasekey = function ( reference, value ) {\n\n\tvar a, i, j, k;\n\n\ta = this.array;\n\ti = 0;\n\tj = a.length;\n\tk = reference.index;\n\n\treference.value = value;\n\n\tsiftup( this.arity, this.compare, this.swap, a, i, j, k );\n\n};\n\nDAryHeap.prototype.increasekey = function ( reference, value ) {\n\n\tvar a, i, j, k;\n\n\ta = this.array;\n\ti = 0;\n\tj = a.length;\n\tk = reference.index;\n\n\treference.value = value;\n\n\tsiftdown( this.arity, this.compare, this.swap, a, i, j, k );\n\n};\n\nDAryHeap.prototype.delete = function ( reference ) {\n\n\tvar a, i, j, k;\n\n\ta = this.array;\n\ti = 0;\n\tj = a.length;\n\tk = reference.index;\n\n\tremove( this.arity, this.compare, this.swap, a, i, j, k );\n\n\ta.pop();\n\n\t--this.length;\n\n};\n",
+    "content": "import pop from '../core/pop.js';\nimport push from '../core/push.js';\nimport merge from '../core/merge.js';\nimport siftup from '../core/siftup.js';\nimport siftdown from '../core/siftdown.js';\nimport remove from '../core/remove.js';\n\nexport default function DAryHeap(arity, compare) {\n\t// Arity of this heap\n\n\tthis.arity = arity;\n\n\t// The comparison function\n\n\tthis.compare = function (a, b) {\n\t\treturn compare(a.value, b.value);\n\t};\n\n\t// The original comparison function\n\n\tthis._compare = compare;\n\n\t// Array used to store values\n\n\tthis.array = [];\n\n\t// Size of the heap\n\n\tthis.length = 0;\n}\n\nDAryHeap.Reference = function (index, value) {\n\tthis.index = index;\n\tthis.value = value;\n};\n\nDAryHeap.prototype.swap = function (a, i, j) {\n\tconst tmp = a[i];\n\ta[i] = a[j];\n\ta[j] = tmp;\n\n\ta[i].index = i;\n\ta[j].index = j;\n};\n\nDAryHeap.prototype.head = function () {\n\tif (this.length === 0) {\n\t\treturn undefined;\n\t}\n\n\treturn this.array[0].value;\n};\n\nDAryHeap.prototype.headreference = function () {\n\tif (this.length === 0) {\n\t\treturn null;\n\t}\n\n\treturn this.array[0];\n};\n\nDAryHeap.prototype.pop = function () {\n\tif (this.length === 0) {\n\t\treturn undefined;\n\t}\n\n\tconst a = this.array;\n\tconst i = 0;\n\tconst j = a.length;\n\n\tconst reference = pop(this.arity, this.compare, this.swap, a, i, j);\n\n\ta.pop();\n\n\t--this.length;\n\n\treturn reference.value;\n};\n\nDAryHeap.prototype.popreference = function () {\n\tif (this.length === 0) {\n\t\treturn null;\n\t}\n\n\tconst a = this.array;\n\tconst i = 0;\n\tconst j = a.length;\n\n\tconst reference = pop(this.arity, this.compare, this.swap, a, i, j);\n\n\ta.pop();\n\n\t--this.length;\n\n\treturn reference;\n};\n\nDAryHeap.prototype.push = function (value) {\n\tconst a = this.array;\n\tconst i = 0;\n\tconst j = a.length;\n\n\tconst reference = new DAryHeap.Reference(j, value);\n\n\ta.push(reference);\n\n\tpush(this.arity, this.compare, this.swap, a, i, j);\n\n\t++this.length;\n\n\treturn reference;\n};\n\nDAryHeap.prototype.pushreference = function (reference) {\n\tconst a = this.array;\n\tconst i = 0;\n\tconst j = a.length;\n\n\treference.index = j;\n\ta.push(reference);\n\n\tpush(this.arity, this.compare, this.swap, a, i, j);\n\n\t++this.length;\n};\n\nDAryHeap.prototype.merge = function (other) {\n\tconst a = this.array;\n\tconst i = 0;\n\tconst j = a.length;\n\n\t// Concat arrays of both heaps\n\n\tconst b = a.concat(other.array);\n\tthis.array = b;\n\n\tconst k = b.length;\n\n\t// Update index of concatenated elements\n\n\tfor (let t = j; t < k; ++t) {\n\t\tb[t].index = t;\n\t}\n\n\tmerge(this.arity, this.compare, this.swap, b, i, j, k);\n\n\tthis.length += other.length;\n};\n\nDAryHeap.prototype.update = function (reference, value) {\n\tconst d = this._compare(value, reference.value);\n\n\tif (d < 0) {\n\t\tthis.decreasekey(reference, value);\n\t} else if (d > 0) {\n\t\tthis.increasekey(reference, value);\n\t} else {\n\t\t// D === 0 does not imply reference.value === value\n\n\t\treference.value = value;\n\t}\n};\n\nDAryHeap.prototype.decreasekey = function (reference, value) {\n\tconst a = this.array;\n\tconst i = 0;\n\tconst j = a.length;\n\tconst k = reference.index;\n\n\treference.value = value;\n\n\tsiftup(this.arity, this.compare, this.swap, a, i, j, k);\n};\n\nDAryHeap.prototype.increasekey = function (reference, value) {\n\tconst a = this.array;\n\tconst i = 0;\n\tconst j = a.length;\n\tconst k = reference.index;\n\n\treference.value = value;\n\n\tsiftdown(this.arity, this.compare, this.swap, a, i, j, k);\n};\n\nDAryHeap.prototype.delete = function (reference) {\n\tconst a = this.array;\n\tconst i = 0;\n\tconst j = a.length;\n\tconst k = reference.index;\n\n\tremove(this.arity, this.compare, this.swap, a, i, j, k);\n\n\ta.pop();\n\n\t--this.length;\n};\n",
     "static": true,
-    "longname": "/home/aureooms/dev/js/js-d-ary-heap/src/adt/DAryHeap.js",
+    "longname": "/home/runner/work/d-ary-heap/d-ary-heap/src/adt/DAryHeap.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -585,10 +585,10 @@
     "longname": "src/adt/DAryHeap.js~DAryHeap",
     "access": "public",
     "export": true,
-    "importPath": "@aureooms/js-d-ary-heap/src/adt/DAryHeap.js",
+    "importPath": "@heap-data-structure/d-ary-heap/src/adt/DAryHeap.js",
     "importStyle": "DAryHeap",
     "description": null,
-    "lineNumber": 4,
+    "lineNumber": 8,
     "undocument": true,
     "params": [
       {
@@ -617,10 +617,10 @@
     "longname": "src/adt/DAryHeap.js~Reference",
     "access": "public",
     "export": false,
-    "importPath": "@aureooms/js-d-ary-heap/src/adt/DAryHeap.js",
+    "importPath": "@heap-data-structure/d-ary-heap/src/adt/DAryHeap.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 35,
+    "lineNumber": 32,
     "undocument": true,
     "params": [
       {
@@ -650,10 +650,10 @@
     "longname": "src/adt/DAryHeap.js~swap",
     "access": "public",
     "export": false,
-    "importPath": "@aureooms/js-d-ary-heap/src/adt/DAryHeap.js",
+    "importPath": "@heap-data-structure/d-ary-heap/src/adt/DAryHeap.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 43,
+    "lineNumber": 37,
     "undocument": true,
     "params": [
       {
@@ -689,10 +689,10 @@
     "longname": "src/adt/DAryHeap.js~head",
     "access": "public",
     "export": false,
-    "importPath": "@aureooms/js-d-ary-heap/src/adt/DAryHeap.js",
+    "importPath": "@heap-data-structure/d-ary-heap/src/adt/DAryHeap.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 55,
+    "lineNumber": 46,
     "undocument": true,
     "params": [],
     "return": {
@@ -713,10 +713,10 @@
     "longname": "src/adt/DAryHeap.js~headreference",
     "access": "public",
     "export": false,
-    "importPath": "@aureooms/js-d-ary-heap/src/adt/DAryHeap.js",
+    "importPath": "@heap-data-structure/d-ary-heap/src/adt/DAryHeap.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 66,
+    "lineNumber": 54,
     "undocument": true,
     "params": [],
     "return": {
@@ -737,10 +737,10 @@
     "longname": "src/adt/DAryHeap.js~pop",
     "access": "public",
     "export": false,
-    "importPath": "@aureooms/js-d-ary-heap/src/adt/DAryHeap.js",
+    "importPath": "@heap-data-structure/d-ary-heap/src/adt/DAryHeap.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 77,
+    "lineNumber": 62,
     "undocument": true,
     "params": [],
     "return": {
@@ -761,10 +761,10 @@
     "longname": "src/adt/DAryHeap.js~popreference",
     "access": "public",
     "export": false,
-    "importPath": "@aureooms/js-d-ary-heap/src/adt/DAryHeap.js",
+    "importPath": "@heap-data-structure/d-ary-heap/src/adt/DAryHeap.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 100,
+    "lineNumber": 80,
     "undocument": true,
     "params": [],
     "return": {
@@ -785,10 +785,10 @@
     "longname": "src/adt/DAryHeap.js~push",
     "access": "public",
     "export": false,
-    "importPath": "@aureooms/js-d-ary-heap/src/adt/DAryHeap.js",
+    "importPath": "@heap-data-structure/d-ary-heap/src/adt/DAryHeap.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 123,
+    "lineNumber": 98,
     "undocument": true,
     "params": [
       {
@@ -816,10 +816,10 @@
     "longname": "src/adt/DAryHeap.js~pushreference",
     "access": "public",
     "export": false,
-    "importPath": "@aureooms/js-d-ary-heap/src/adt/DAryHeap.js",
+    "importPath": "@heap-data-structure/d-ary-heap/src/adt/DAryHeap.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 144,
+    "lineNumber": 114,
     "undocument": true,
     "params": [
       {
@@ -843,10 +843,10 @@
     "longname": "src/adt/DAryHeap.js~merge",
     "access": "public",
     "export": false,
-    "importPath": "@aureooms/js-d-ary-heap/src/adt/DAryHeap.js",
+    "importPath": "@heap-data-structure/d-ary-heap/src/adt/DAryHeap.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 163,
+    "lineNumber": 127,
     "undocument": true,
     "params": [
       {
@@ -870,10 +870,10 @@
     "longname": "src/adt/DAryHeap.js~update",
     "access": "public",
     "export": false,
-    "importPath": "@aureooms/js-d-ary-heap/src/adt/DAryHeap.js",
+    "importPath": "@heap-data-structure/d-ary-heap/src/adt/DAryHeap.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 190,
+    "lineNumber": 150,
     "undocument": true,
     "params": [
       {
@@ -903,10 +903,10 @@
     "longname": "src/adt/DAryHeap.js~decreasekey",
     "access": "public",
     "export": false,
-    "importPath": "@aureooms/js-d-ary-heap/src/adt/DAryHeap.js",
+    "importPath": "@heap-data-structure/d-ary-heap/src/adt/DAryHeap.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 214,
+    "lineNumber": 164,
     "undocument": true,
     "params": [
       {
@@ -936,10 +936,10 @@
     "longname": "src/adt/DAryHeap.js~increasekey",
     "access": "public",
     "export": false,
-    "importPath": "@aureooms/js-d-ary-heap/src/adt/DAryHeap.js",
+    "importPath": "@heap-data-structure/d-ary-heap/src/adt/DAryHeap.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 229,
+    "lineNumber": 175,
     "undocument": true,
     "params": [
       {
@@ -969,10 +969,10 @@
     "longname": "src/adt/DAryHeap.js~delete",
     "access": "public",
     "export": false,
-    "importPath": "@aureooms/js-d-ary-heap/src/adt/DAryHeap.js",
+    "importPath": "@heap-data-structure/d-ary-heap/src/adt/DAryHeap.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 244,
+    "lineNumber": 186,
     "undocument": true,
     "params": [
       {
@@ -989,9 +989,9 @@
     "__docId__": 63,
     "kind": "file",
     "name": "src/adt/DAryHeapWithoutReferences.js",
-    "content": "\nimport { pop , push , merge } from '../core' ;\n\nexport default function DAryHeapWithoutReferences ( arity, compare ) {\n\n\t// arity of this heap\n\n\tthis.arity = arity;\n\n\n\t// the comparison function\n\n\tthis.compare = compare;\n\n\n\t// array used to store values\n\n\tthis.array = [];\n\n\n\t// size of the heap\n\n\tthis.length = 0;\n\n}\n\n\nDAryHeapWithoutReferences.prototype.swap = function ( a, i, j ) {\n\n\tconst tmp = a[i];\n\ta[i] = a[j];\n\ta[j] = tmp;\n\n};\n\n\nDAryHeapWithoutReferences.prototype.head = function () {\n\n\tif ( this.length === 0 ) {\n\t\treturn undefined;\n\t}\n\n\treturn this.array[0];\n\n};\n\n\nDAryHeapWithoutReferences.prototype.pop = function () {\n\n\tvar a, i, j, value;\n\n\tif ( this.length === 0 ) {\n\t\treturn undefined;\n\t}\n\n\ta = this.array;\n\ti = 0;\n\tj = a.length;\n\n\tvalue = pop( this.arity, this.compare, this.swap, a, i, j );\n\n\ta.pop();\n\n\t--this.length;\n\n\treturn value;\n\n};\n\n\nDAryHeapWithoutReferences.prototype.push = function ( value ) {\n\n\tvar a, i, j;\n\n\ta = this.array;\n\ti = 0;\n\tj = a.length;\n\n\n\ta.push( value );\n\n\tpush( this.arity, this.compare, this.swap, a, i, j );\n\n\t++this.length;\n\n};\n\nDAryHeapWithoutReferences.prototype.merge = function ( other ) {\n\n\tvar a, i, j, k;\n\n\ta = this.array;\n\ti = 0;\n\tj = a.length;\n\n\ta = this.array = a.concat( other.array );\n\n\tk = a.length;\n\n\tmerge( this.arity, this.compare, this.swap, a, i, j, k );\n\n\tthis.length += other.length;\n\n};\n",
+    "content": "import pop from '../core/pop.js';\nimport push from '../core/push.js';\nimport merge from '../core/merge.js';\n\nexport default function DAryHeapWithoutReferences(arity, compare) {\n\t// Arity of this heap\n\n\tthis.arity = arity;\n\n\t// The comparison function\n\n\tthis.compare = compare;\n\n\t// Array used to store values\n\n\tthis.array = [];\n\n\t// Size of the heap\n\n\tthis.length = 0;\n}\n\nDAryHeapWithoutReferences.prototype.swap = function (a, i, j) {\n\tconst tmp = a[i];\n\ta[i] = a[j];\n\ta[j] = tmp;\n};\n\nDAryHeapWithoutReferences.prototype.head = function () {\n\tif (this.length === 0) {\n\t\treturn undefined;\n\t}\n\n\treturn this.array[0];\n};\n\nDAryHeapWithoutReferences.prototype.pop = function () {\n\tif (this.length === 0) {\n\t\treturn undefined;\n\t}\n\n\tconst a = this.array;\n\tconst i = 0;\n\tconst j = a.length;\n\n\tconst value = pop(this.arity, this.compare, this.swap, a, i, j);\n\n\ta.pop();\n\n\t--this.length;\n\n\treturn value;\n};\n\nDAryHeapWithoutReferences.prototype.push = function (value) {\n\tconst a = this.array;\n\tconst i = 0;\n\tconst j = a.length;\n\n\ta.push(value);\n\n\tpush(this.arity, this.compare, this.swap, a, i, j);\n\n\t++this.length;\n};\n\nDAryHeapWithoutReferences.prototype.merge = function (other) {\n\tconst a = this.array;\n\tconst i = 0;\n\tconst j = a.length;\n\n\tconst b = a.concat(other.array);\n\tthis.array = b;\n\n\tconst k = b.length;\n\n\tmerge(this.arity, this.compare, this.swap, b, i, j, k);\n\n\tthis.length += other.length;\n};\n",
     "static": true,
-    "longname": "/home/aureooms/dev/js/js-d-ary-heap/src/adt/DAryHeapWithoutReferences.js",
+    "longname": "/home/runner/work/d-ary-heap/d-ary-heap/src/adt/DAryHeapWithoutReferences.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -1007,10 +1007,10 @@
     "longname": "src/adt/DAryHeapWithoutReferences.js~DAryHeapWithoutReferences",
     "access": "public",
     "export": true,
-    "importPath": "@aureooms/js-d-ary-heap/src/adt/DAryHeapWithoutReferences.js",
+    "importPath": "@heap-data-structure/d-ary-heap/src/adt/DAryHeapWithoutReferences.js",
     "importStyle": "DAryHeapWithoutReferences",
     "description": null,
-    "lineNumber": 4,
+    "lineNumber": 5,
     "undocument": true,
     "params": [
       {
@@ -1039,10 +1039,10 @@
     "longname": "src/adt/DAryHeapWithoutReferences.js~swap",
     "access": "public",
     "export": false,
-    "importPath": "@aureooms/js-d-ary-heap/src/adt/DAryHeapWithoutReferences.js",
+    "importPath": "@heap-data-structure/d-ary-heap/src/adt/DAryHeapWithoutReferences.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 28,
+    "lineNumber": 23,
     "undocument": true,
     "params": [
       {
@@ -1078,10 +1078,10 @@
     "longname": "src/adt/DAryHeapWithoutReferences.js~head",
     "access": "public",
     "export": false,
-    "importPath": "@aureooms/js-d-ary-heap/src/adt/DAryHeapWithoutReferences.js",
+    "importPath": "@heap-data-structure/d-ary-heap/src/adt/DAryHeapWithoutReferences.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 37,
+    "lineNumber": 29,
     "undocument": true,
     "params": [],
     "return": {
@@ -1102,10 +1102,10 @@
     "longname": "src/adt/DAryHeapWithoutReferences.js~pop",
     "access": "public",
     "export": false,
-    "importPath": "@aureooms/js-d-ary-heap/src/adt/DAryHeapWithoutReferences.js",
+    "importPath": "@heap-data-structure/d-ary-heap/src/adt/DAryHeapWithoutReferences.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 48,
+    "lineNumber": 37,
     "undocument": true,
     "params": [],
     "return": {
@@ -1126,10 +1126,10 @@
     "longname": "src/adt/DAryHeapWithoutReferences.js~push",
     "access": "public",
     "export": false,
-    "importPath": "@aureooms/js-d-ary-heap/src/adt/DAryHeapWithoutReferences.js",
+    "importPath": "@heap-data-structure/d-ary-heap/src/adt/DAryHeapWithoutReferences.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 71,
+    "lineNumber": 55,
     "undocument": true,
     "params": [
       {
@@ -1153,10 +1153,10 @@
     "longname": "src/adt/DAryHeapWithoutReferences.js~merge",
     "access": "public",
     "export": false,
-    "importPath": "@aureooms/js-d-ary-heap/src/adt/DAryHeapWithoutReferences.js",
+    "importPath": "@heap-data-structure/d-ary-heap/src/adt/DAryHeapWithoutReferences.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 88,
+    "lineNumber": 67,
     "undocument": true,
     "params": [
       {
@@ -1172,38 +1172,16 @@
   {
     "__docId__": 70,
     "kind": "file",
-    "name": "src/adt/index.js",
-    "content": "import DAryHeap from './DAryHeap' ;\nimport DAryHeapWithoutReferences from './DAryHeapWithoutReferences' ;\n\nexport default {\n\tDAryHeap ,\n\tDAryHeapWithoutReferences ,\n} ;\n\nexport {\n\tDAryHeap ,\n\tDAryHeapWithoutReferences ,\n} ;\n",
+    "name": "src/core/makeheap.js",
+    "content": "import siftdown from './siftdown.js';\n\n/**\n * Builds a heap in O(n) operations.\n *\n * @param {int} arity arity of the heap\n * @param {function} compare the comparison function\n * @param {function} swap the swap function\n * @param {array} a the array where the heap is stored\n * @param {int} i left inner bound\n * @param {int} j right outer bound\n *\n */\n\nexport default function makeheap(arity, compare, swap, a, i, j) {\n\tfor (let k = (i + (j - i + arity - 2) / arity) | 0; k-- > i; ) {\n\t\tsiftdown(arity, compare, swap, a, i, j, k);\n\t}\n}\n",
     "static": true,
-    "longname": "/home/aureooms/dev/js/js-d-ary-heap/src/adt/index.js",
+    "longname": "/home/runner/work/d-ary-heap/d-ary-heap/src/core/makeheap.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
   },
   {
     "__docId__": 71,
-    "kind": "file",
-    "name": "src/core/index.js",
-    "content": "import makeheap from './makeheap' ;\nimport merge from './merge' ;\nimport nextchild from './nextchild' ;\nimport pop from './pop' ;\nimport pull from './pull' ;\nimport push from './push' ;\nimport remove from './remove' ;\nimport siftdown from './siftdown' ;\nimport siftup from './siftup' ;\nimport sorted from './sorted' ;\n\nexport default {\n\tmakeheap ,\n\tmerge ,\n\tnextchild ,\n\tpop ,\n\tpull ,\n\tpush ,\n\tremove ,\n\tsiftdown ,\n\tsiftup ,\n\tsorted ,\n} ;\n\nexport {\n\tmakeheap ,\n\tmerge ,\n\tnextchild ,\n\tpop ,\n\tpull ,\n\tpush ,\n\tremove ,\n\tsiftdown ,\n\tsiftup ,\n\tsorted ,\n} ;\n",
-    "static": true,
-    "longname": "/home/aureooms/dev/js/js-d-ary-heap/src/core/index.js",
-    "access": "public",
-    "description": null,
-    "lineNumber": 1
-  },
-  {
-    "__docId__": 72,
-    "kind": "file",
-    "name": "src/core/makeheap.js",
-    "content": "\nimport siftdown from './siftdown' ;\n\n/**\n * Builds a heap in O(n) operations.\n *\n * @param {int} arity arity of the heap\n * @param {function} compare the comparison function\n * @param {function} swap the swap function\n * @param {array} a the array where the heap is stored\n * @param {int} i left inner bound\n * @param {int} j right outer bound\n *\n */\n\nexport default function makeheap ( arity , compare , swap , a , i , j ) {\n\n\tfor ( let k = i + ( j - i + arity - 2 ) / arity | 0 ; k --> i ; ) {\n\n\t\tsiftdown( arity , compare , swap , a , i , j , k ) ;\n\n\t}\n\n}\n",
-    "static": true,
-    "longname": "/home/aureooms/dev/js/js-d-ary-heap/src/core/makeheap.js",
-    "access": "public",
-    "description": null,
-    "lineNumber": 1
-  },
-  {
-    "__docId__": 73,
     "kind": "function",
     "name": "makeheap",
     "memberof": "src/core/makeheap.js",
@@ -1213,10 +1191,10 @@
     "longname": "src/core/makeheap.js~makeheap",
     "access": "public",
     "export": true,
-    "importPath": "@aureooms/js-d-ary-heap/src/core/makeheap.js",
+    "importPath": "@heap-data-structure/d-ary-heap/src/core/makeheap.js",
     "importStyle": "makeheap",
     "description": "Builds a heap in O(n) operations.",
-    "lineNumber": 16,
+    "lineNumber": 15,
     "params": [
       {
         "nullable": null,
@@ -1282,18 +1260,18 @@
     "return": null
   },
   {
-    "__docId__": 74,
+    "__docId__": 72,
     "kind": "file",
     "name": "src/core/merge.js",
-    "content": "\nimport siftup from './siftup' ;\n\n/**\n * Merges heaps at intervals [i, j[ and [j, k[ in array *a*\n * into a new heap at interval [i, k[.\n *\n * Hypothesis :\n *\n *   - i <= j <= k\n *   - j - 1 is the last leaf ot the first heap\n *\n * @param {int} arity arity of the heap\n * @param {function} compare the comparison function\n * @param {function} swap the swap function\n * @param {array} a the array where the two heaps are stored\n * @param {int} i is the root of the first heap\n * @param {int} j is the root of the second heap\n * @param {int} k - 1 is the index of the last leaf in the second heap\n */\n\nexport default function merge ( arity, compare, swap, a, i, j, k ) {\n\n\tfor ( ; j < k ; ++j ) {\n\t\tsiftup( arity, compare, swap, a, i, j + 1, j );\n\t}\n\n}\n",
+    "content": "import siftup from './siftup.js';\n\n/**\n * Merges heaps at intervals [i, j[ and [j, k[ in array *a*\n * into a new heap at interval [i, k[.\n *\n * Hypothesis :\n *\n *   - i <= j <= k\n *   - j - 1 is the last leaf ot the first heap\n *\n * @param {int} arity arity of the heap\n * @param {function} compare the comparison function\n * @param {function} swap the swap function\n * @param {array} a the array where the two heaps are stored\n * @param {int} i is the root of the first heap\n * @param {int} j is the root of the second heap\n * @param {int} k - 1 is the index of the last leaf in the second heap\n */\n\nexport default function merge(arity, compare, swap, a, i, j, k) {\n\tfor (; j < k; ++j) {\n\t\tsiftup(arity, compare, swap, a, i, j + 1, j);\n\t}\n}\n",
     "static": true,
-    "longname": "/home/aureooms/dev/js/js-d-ary-heap/src/core/merge.js",
+    "longname": "/home/runner/work/d-ary-heap/d-ary-heap/src/core/merge.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
   },
   {
-    "__docId__": 75,
+    "__docId__": 73,
     "kind": "function",
     "name": "merge",
     "memberof": "src/core/merge.js",
@@ -1303,10 +1281,10 @@
     "longname": "src/core/merge.js~merge",
     "access": "public",
     "export": true,
-    "importPath": "@aureooms/js-d-ary-heap/src/core/merge.js",
+    "importPath": "@heap-data-structure/d-ary-heap/src/core/merge.js",
     "importStyle": "merge",
     "description": "Merges heaps at intervals [i, j[ and [j, k[ in array *a*\ninto a new heap at interval [i, k[.\n\nHypothesis :\n\n  - i <= j <= k\n  - j - 1 is the last leaf ot the first heap",
-    "lineNumber": 22,
+    "lineNumber": 21,
     "params": [
       {
         "nullable": null,
@@ -1382,18 +1360,18 @@
     "return": null
   },
   {
-    "__docId__": 76,
+    "__docId__": 74,
     "kind": "file",
     "name": "src/core/nextchild.js",
-    "content": "\n\n/**\n * Computes which child is the smallest according\n * to a comparison function.\n *\n * Hypothesis : i < j i.e. there should be at least one child\n *\n * @param {int} arity arity of the heap\n * @param {function} compare the comparison function\n * @param {function} swap the swap function\n * @param {array} a the array where the heap is stored\n * @param {int} i is the first child\n * @param {int} j - 1 is the last leaf\n */\n\nexport default function nextchild ( arity, compare, swap, a, i, j ) {\n\n\tconst k = i + Math.min( arity, j - i );\n\n\tlet best = i;\n\n\tfor ( ++i ; i < k ; ++i ) {\n\n\t\tif ( compare( a[i], a[best] ) < 0 ) {\n\t\t\tbest = i;\n\t\t}\n\n\t}\n\n\treturn best;\n\n}\n",
+    "content": "/**\n * Computes which child is the smallest according\n * to a comparison function.\n *\n * Hypothesis : i < j i.e. there should be at least one child\n *\n * @param {int} arity arity of the heap\n * @param {function} compare the comparison function\n * @param {function} swap the swap function\n * @param {array} a the array where the heap is stored\n * @param {int} i is the first child\n * @param {int} j - 1 is the last leaf\n */\n\nexport default function nextchild(arity, compare, swap, a, i, j) {\n\tconst k = i + Math.min(arity, j - i);\n\n\tlet best = i;\n\n\tfor (++i; i < k; ++i) {\n\t\tif (compare(a[i], a[best]) < 0) {\n\t\t\tbest = i;\n\t\t}\n\t}\n\n\treturn best;\n}\n",
     "static": true,
-    "longname": "/home/aureooms/dev/js/js-d-ary-heap/src/core/nextchild.js",
+    "longname": "/home/runner/work/d-ary-heap/d-ary-heap/src/core/nextchild.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
   },
   {
-    "__docId__": 77,
+    "__docId__": 75,
     "kind": "function",
     "name": "nextchild",
     "memberof": "src/core/nextchild.js",
@@ -1403,10 +1381,10 @@
     "longname": "src/core/nextchild.js~nextchild",
     "access": "public",
     "export": true,
-    "importPath": "@aureooms/js-d-ary-heap/src/core/nextchild.js",
+    "importPath": "@heap-data-structure/d-ary-heap/src/core/nextchild.js",
     "importStyle": "nextchild",
     "description": "Computes which child is the smallest according\nto a comparison function.\n\nHypothesis : i < j i.e. there should be at least one child",
-    "lineNumber": 17,
+    "lineNumber": 15,
     "params": [
       {
         "nullable": null,
@@ -1476,18 +1454,18 @@
     }
   },
   {
-    "__docId__": 78,
+    "__docId__": 76,
     "kind": "file",
     "name": "src/core/pop.js",
-    "content": "\nimport siftdown from './siftdown' ;\n\n/**\n * Pops the root from a d-ary heap.\n *\n * Hypothesis : i < j\n *\n * @param {int} arity arity of the heap\n * @param {function} compare the comparison function\n * @param {function} swap the swap function\n * @param {array} a the array where the heap is stored\n * @param {int} i is the root\n * @param {int} j - 1 is the last leaf\n */\n\nexport default function pop ( arity, compare, swap, a, i, j ) {\n\n\t// decrement size of heap\n\n\t--j;\n\n\n\t// put last leaf at root\n\n\tconst popped = a[i];\n\ta[i] = a[j];\n\n\n\t// sift down the new root\n\n\tsiftdown( arity, compare, swap, a, i, j, i );\n\n\n\t// return old root\n\n\treturn popped;\n\n}\n",
+    "content": "import siftdown from './siftdown.js';\n\n/**\n * Pops the root from a d-ary heap.\n *\n * Hypothesis : i < j\n *\n * @param {int} arity arity of the heap\n * @param {function} compare the comparison function\n * @param {function} swap the swap function\n * @param {array} a the array where the heap is stored\n * @param {int} i is the root\n * @param {int} j - 1 is the last leaf\n */\n\nexport default function pop(arity, compare, swap, a, i, j) {\n\t// Decrement size of heap\n\n\t--j;\n\n\t// Put last leaf at root\n\n\tconst popped = a[i];\n\ta[i] = a[j];\n\n\t// Sift down the new root\n\n\tsiftdown(arity, compare, swap, a, i, j, i);\n\n\t// Return old root\n\n\treturn popped;\n}\n",
     "static": true,
-    "longname": "/home/aureooms/dev/js/js-d-ary-heap/src/core/pop.js",
+    "longname": "/home/runner/work/d-ary-heap/d-ary-heap/src/core/pop.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
   },
   {
-    "__docId__": 79,
+    "__docId__": 77,
     "kind": "function",
     "name": "pop",
     "memberof": "src/core/pop.js",
@@ -1497,10 +1475,10 @@
     "longname": "src/core/pop.js~pop",
     "access": "public",
     "export": true,
-    "importPath": "@aureooms/js-d-ary-heap/src/core/pop.js",
+    "importPath": "@heap-data-structure/d-ary-heap/src/core/pop.js",
     "importStyle": "pop",
     "description": "Pops the root from a d-ary heap.\n\nHypothesis : i < j",
-    "lineNumber": 17,
+    "lineNumber": 16,
     "params": [
       {
         "nullable": null,
@@ -1570,18 +1548,18 @@
     }
   },
   {
-    "__docId__": 80,
+    "__docId__": 78,
     "kind": "file",
     "name": "src/core/pull.js",
-    "content": "\n/**\n * Sifts a node up to the root as if its priority was the highest.\n *\n * @param {int} arity arity of the heap\n * @param {function} compare the comparison function\n * @param {function} swap the swap function\n * @param {array} a the array where the heap is stored\n * @param {int} i is the root element\n * @param {int} j - 1 is the last leaf\n * @param {int} k is the target node\n */\n\nexport default function pull ( arity, compare, swap, a, i, j, k ) {\n\n\tlet current = k - i;\n\n\t// while we are not the root\n\n\twhile ( current !== 0 ) {\n\n\t\t// address of the parent in a zero-based\n\t\t// d-ary heap\n\n\t\tconst parent = i + Math.floor( ( current - 1 ) / arity );\n\n\t\t// swap with parent\n\n\t\tswap( a, i + current, parent );\n\n\t\tcurrent = parent - i;\n\n\t}\n\n}\n",
+    "content": "/**\n * Sifts a node up to the root as if its priority was the highest.\n *\n * @param {int} arity arity of the heap\n * @param {function} compare the comparison function\n * @param {function} swap the swap function\n * @param {array} a the array where the heap is stored\n * @param {int} i is the root element\n * @param {int} j - 1 is the last leaf\n * @param {int} k is the target node\n */\n\nexport default function pull(arity, compare, swap, a, i, j, k) {\n\tlet current = k - i;\n\n\t// While we are not the root\n\n\twhile (current !== 0) {\n\t\t// Address of the parent in a zero-based\n\t\t// d-ary heap\n\n\t\tconst parent = i + Math.floor((current - 1) / arity);\n\n\t\t// Swap with parent\n\n\t\tswap(a, i + current, parent);\n\n\t\tcurrent = parent - i;\n\t}\n}\n",
     "static": true,
-    "longname": "/home/aureooms/dev/js/js-d-ary-heap/src/core/pull.js",
+    "longname": "/home/runner/work/d-ary-heap/d-ary-heap/src/core/pull.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
   },
   {
-    "__docId__": 81,
+    "__docId__": 79,
     "kind": "function",
     "name": "pull",
     "memberof": "src/core/pull.js",
@@ -1591,10 +1569,10 @@
     "longname": "src/core/pull.js~pull",
     "access": "public",
     "export": true,
-    "importPath": "@aureooms/js-d-ary-heap/src/core/pull.js",
+    "importPath": "@heap-data-structure/d-ary-heap/src/core/pull.js",
     "importStyle": "pull",
     "description": "Sifts a node up to the root as if its priority was the highest.",
-    "lineNumber": 14,
+    "lineNumber": 13,
     "params": [
       {
         "nullable": null,
@@ -1670,18 +1648,18 @@
     "return": null
   },
   {
-    "__docId__": 82,
+    "__docId__": 80,
     "kind": "file",
     "name": "src/core/push.js",
-    "content": "\nimport siftup from './siftup' ;\n\n/**\n * Inserts the jth element of an array in an existing\n * dary heap in interval [i, j[.\n *\n * Hypothesis : i <= j\n *\n * @param {int} arity arity of the heap\n * @param {function} compare the comparison function\n * @param {function} swap the swap function\n * @param {array} a the array where the heap is stored\n * @param {int} i is the root\n * @param {int} j - 1 is the new leaf\n */\n\nexport default function push ( arity, compare, swap, a, i, j ) {\n\n\t// sift up the new leaf\n\n\treturn siftup( arity, compare, swap, a, i, j + 1, j );\n\n}\n",
+    "content": "import siftup from './siftup.js';\n\n/**\n * Inserts the jth element of an array in an existing\n * dary heap in interval [i, j[.\n *\n * Hypothesis : i <= j\n *\n * @param {int} arity arity of the heap\n * @param {function} compare the comparison function\n * @param {function} swap the swap function\n * @param {array} a the array where the heap is stored\n * @param {int} i is the root\n * @param {int} j - 1 is the new leaf\n */\n\nexport default function push(arity, compare, swap, a, i, j) {\n\t// Sift up the new leaf\n\n\treturn siftup(arity, compare, swap, a, i, j + 1, j);\n}\n",
     "static": true,
-    "longname": "/home/aureooms/dev/js/js-d-ary-heap/src/core/push.js",
+    "longname": "/home/runner/work/d-ary-heap/d-ary-heap/src/core/push.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
   },
   {
-    "__docId__": 83,
+    "__docId__": 81,
     "kind": "function",
     "name": "push",
     "memberof": "src/core/push.js",
@@ -1691,10 +1669,10 @@
     "longname": "src/core/push.js~push",
     "access": "public",
     "export": true,
-    "importPath": "@aureooms/js-d-ary-heap/src/core/push.js",
+    "importPath": "@heap-data-structure/d-ary-heap/src/core/push.js",
     "importStyle": "push",
     "description": "Inserts the jth element of an array in an existing\ndary heap in interval [i, j[.\n\nHypothesis : i <= j",
-    "lineNumber": 18,
+    "lineNumber": 17,
     "params": [
       {
         "nullable": null,
@@ -1764,18 +1742,18 @@
     }
   },
   {
-    "__docId__": 84,
+    "__docId__": 82,
     "kind": "file",
     "name": "src/core/remove.js",
-    "content": "\nimport pull from './pull' ;\nimport pop from './pop' ;\n\n/**\n * Removes a target element from a d-ary heap.\n *\n * Hypothesis : i < j\n *\n * @param {int} arity arity of the heap\n * @param {function} compare the comparison function\n * @param {function} swap the swap function\n * @param {array} a the array where the heap is stored\n * @param {int} i is the root\n * @param {int} j - 1 is the last leaf\n * @param {int} k is the target node\n */\n\nexport default function remove ( arity, compare, swap, a, i, j, k ) {\n\n\t// pull target node all the way up\n\n\tpull( arity, compare, swap, a, i, j, k );\n\n\t// pop target node\n\n\treturn pop( arity, compare, swap, a, i, j );\n\n}\n",
+    "content": "import pull from './pull.js';\nimport pop from './pop.js';\n\n/**\n * Removes a target element from a d-ary heap.\n *\n * Hypothesis : i < j\n *\n * @param {int} arity arity of the heap\n * @param {function} compare the comparison function\n * @param {function} swap the swap function\n * @param {array} a the array where the heap is stored\n * @param {int} i is the root\n * @param {int} j - 1 is the last leaf\n * @param {int} k is the target node\n */\n\nexport default function remove(arity, compare, swap, a, i, j, k) {\n\t// Pull target node all the way up\n\n\tpull(arity, compare, swap, a, i, j, k);\n\n\t// Pop target node\n\n\treturn pop(arity, compare, swap, a, i, j);\n}\n",
     "static": true,
-    "longname": "/home/aureooms/dev/js/js-d-ary-heap/src/core/remove.js",
+    "longname": "/home/runner/work/d-ary-heap/d-ary-heap/src/core/remove.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
   },
   {
-    "__docId__": 85,
+    "__docId__": 83,
     "kind": "function",
     "name": "remove",
     "memberof": "src/core/remove.js",
@@ -1785,10 +1763,10 @@
     "longname": "src/core/remove.js~remove",
     "access": "public",
     "export": true,
-    "importPath": "@aureooms/js-d-ary-heap/src/core/remove.js",
+    "importPath": "@heap-data-structure/d-ary-heap/src/core/remove.js",
     "importStyle": "remove",
     "description": "Removes a target element from a d-ary heap.\n\nHypothesis : i < j",
-    "lineNumber": 19,
+    "lineNumber": 18,
     "params": [
       {
         "nullable": null,
@@ -1868,18 +1846,18 @@
     }
   },
   {
-    "__docId__": 86,
+    "__docId__": 84,
     "kind": "file",
     "name": "src/core/siftdown.js",
-    "content": "\nimport nextchild from './nextchild' ;\n\n/**\n * Sifts down a node.\n *\n * @param {int} arity arity of the heap\n * @param {function} compare the comparison function\n * @param {function} swap the swap function\n * @param {array} a the array where the heap is stored\n * @param {int} i is the root element\n * @param {int} j - 1 is the last leaf\n * @param {int} k is the target node\n */\n\nexport default function siftdown ( arity, compare, swap, a, i, j, k ) {\n\n\tlet current = k - i;\n\n\twhile ( true ) {\n\n\t\t// address of the first child in a zero-based\n\t\t// d-ary heap\n\n\t\tconst firstchild = arity * current + 1;\n\n\t\t// if current node has no children\n\t\t// then we are done\n\n\t\tif ( firstchild >= j - i ) break;\n\n\t\t// if current value is smaller than its smallest\n\t\t// child then we are done\n\n\t\tconst candidate = nextchild( arity, compare, swap, a, i + firstchild, j );\n\n\t\tif ( compare( a[i + current], a[candidate] ) <= 0 ) break;\n\n\t\t// otherwise\n\t\t// swap with smallest child\n\n\t\tswap( a, i + current, candidate );\n\n\t\tcurrent = candidate - i;\n\n\t}\n\n\treturn i + current;\n\n}\n",
+    "content": "import nextchild from './nextchild.js';\n\n/**\n * Sifts down a node.\n *\n * @param {int} arity arity of the heap\n * @param {function} compare the comparison function\n * @param {function} swap the swap function\n * @param {array} a the array where the heap is stored\n * @param {int} i is the root element\n * @param {int} j - 1 is the last leaf\n * @param {int} k is the target node\n */\n\nexport default function siftdown(arity, compare, swap, a, i, j, k) {\n\tlet current = k - i;\n\n\twhile (true) {\n\t\t// Address of the first child in a zero-based\n\t\t// d-ary heap\n\n\t\tconst firstchild = arity * current + 1;\n\n\t\t// If current node has no children\n\t\t// then we are done\n\n\t\tif (firstchild >= j - i) break;\n\n\t\t// If current value is smaller than its smallest\n\t\t// child then we are done\n\n\t\tconst candidate = nextchild(arity, compare, swap, a, i + firstchild, j);\n\n\t\tif (compare(a[i + current], a[candidate]) <= 0) break;\n\n\t\t// Otherwise\n\t\t// swap with smallest child\n\n\t\tswap(a, i + current, candidate);\n\n\t\tcurrent = candidate - i;\n\t}\n\n\treturn i + current;\n}\n",
     "static": true,
-    "longname": "/home/aureooms/dev/js/js-d-ary-heap/src/core/siftdown.js",
+    "longname": "/home/runner/work/d-ary-heap/d-ary-heap/src/core/siftdown.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
   },
   {
-    "__docId__": 87,
+    "__docId__": 85,
     "kind": "function",
     "name": "siftdown",
     "memberof": "src/core/siftdown.js",
@@ -1889,10 +1867,114 @@
     "longname": "src/core/siftdown.js~siftdown",
     "access": "public",
     "export": true,
-    "importPath": "@aureooms/js-d-ary-heap/src/core/siftdown.js",
+    "importPath": "@heap-data-structure/d-ary-heap/src/core/siftdown.js",
     "importStyle": "siftdown",
     "description": "Sifts down a node.",
-    "lineNumber": 16,
+    "lineNumber": 15,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "int"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "arity",
+        "description": "arity of the heap"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "compare",
+        "description": "the comparison function"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "swap",
+        "description": "the swap function"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "array"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "a",
+        "description": "the array where the heap is stored"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "int"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "i",
+        "description": "is the root element"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "int"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "j",
+        "description": "1 is the last leaf"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "int"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "k",
+        "description": "is the target node"
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 86,
+    "kind": "file",
+    "name": "src/core/siftup.js",
+    "content": "/**\n * Sifts up a node.\n *\n * @param {int} arity arity of the heap\n * @param {function} compare the comparison function\n * @param {function} swap the swap function\n * @param {array} a the array where the heap is stored\n * @param {int} i is the root element\n * @param {int} j - 1 is the last leaf\n * @param {int} k is the target node\n */\n\nexport default function siftup(arity, compare, swap, a, i, j, k) {\n\tlet current = k - i;\n\n\t// While we are not the root\n\n\twhile (current !== 0) {\n\t\t// Address of the parent in a zero-based\n\t\t// d-ary heap\n\n\t\tconst parent = i + Math.floor((current - 1) / arity);\n\n\t\t// If current value is greater than its parent\n\t\t// then we are done\n\n\t\tif (compare(a[i + current], a[parent]) >= 0) break;\n\n\t\t// Otherwise\n\t\t// swap with parent\n\n\t\tswap(a, i + current, parent);\n\n\t\tcurrent = parent - i;\n\t}\n\n\treturn i + current;\n}\n",
+    "static": true,
+    "longname": "/home/runner/work/d-ary-heap/d-ary-heap/src/core/siftup.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 87,
+    "kind": "function",
+    "name": "siftup",
+    "memberof": "src/core/siftup.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/core/siftup.js~siftup",
+    "access": "public",
+    "export": true,
+    "importPath": "@heap-data-structure/d-ary-heap/src/core/siftup.js",
+    "importStyle": "siftup",
+    "description": "Sifts up a node.",
+    "lineNumber": 13,
     "params": [
       {
         "nullable": null,
@@ -1974,120 +2056,16 @@
   {
     "__docId__": 88,
     "kind": "file",
-    "name": "src/core/siftup.js",
-    "content": "\n/**\n * Sifts up a node.\n *\n * @param {int} arity arity of the heap\n * @param {function} compare the comparison function\n * @param {function} swap the swap function\n * @param {array} a the array where the heap is stored\n * @param {int} i is the root element\n * @param {int} j - 1 is the last leaf\n * @param {int} k is the target node\n */\n\nexport default function siftup ( arity, compare, swap, a, i, j, k ) {\n\n\tlet current = k - i;\n\n\t// while we are not the root\n\n\twhile ( current !== 0 ) {\n\n\t\t// address of the parent in a zero-based\n\t\t// d-ary heap\n\n\t\tconst parent = i + Math.floor( ( current - 1 ) / arity );\n\n\t\t// if current value is greater than its parent\n\t\t// then we are done\n\n\t\tif ( compare( a[i + current], a[parent] ) >= 0 ) break;\n\n\t\t// otherwise\n\t\t// swap with parent\n\n\t\tswap( a, i + current, parent );\n\n\t\tcurrent = parent - i;\n\n\t}\n\n\treturn i + current;\n\n}\n",
+    "name": "src/core/sorted.js",
+    "content": "import makeheap from './makeheap.js';\nimport pop from './pop.js';\n\nexport default function* sorted(arity, compare, swap, a, i, j) {\n\tmakeheap(arity, compare, swap, a, i, j);\n\n\tfor (; i < j; --j) yield pop(arity, compare, swap, a, i, j);\n}\n",
     "static": true,
-    "longname": "/home/aureooms/dev/js/js-d-ary-heap/src/core/siftup.js",
+    "longname": "/home/runner/work/d-ary-heap/d-ary-heap/src/core/sorted.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
   },
   {
     "__docId__": 89,
-    "kind": "function",
-    "name": "siftup",
-    "memberof": "src/core/siftup.js",
-    "generator": false,
-    "async": false,
-    "static": true,
-    "longname": "src/core/siftup.js~siftup",
-    "access": "public",
-    "export": true,
-    "importPath": "@aureooms/js-d-ary-heap/src/core/siftup.js",
-    "importStyle": "siftup",
-    "description": "Sifts up a node.",
-    "lineNumber": 14,
-    "params": [
-      {
-        "nullable": null,
-        "types": [
-          "int"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "arity",
-        "description": "arity of the heap"
-      },
-      {
-        "nullable": null,
-        "types": [
-          "function"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "compare",
-        "description": "the comparison function"
-      },
-      {
-        "nullable": null,
-        "types": [
-          "function"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "swap",
-        "description": "the swap function"
-      },
-      {
-        "nullable": null,
-        "types": [
-          "array"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "a",
-        "description": "the array where the heap is stored"
-      },
-      {
-        "nullable": null,
-        "types": [
-          "int"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "i",
-        "description": "is the root element"
-      },
-      {
-        "nullable": null,
-        "types": [
-          "int"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "j",
-        "description": "1 is the last leaf"
-      },
-      {
-        "nullable": null,
-        "types": [
-          "int"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "k",
-        "description": "is the target node"
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 90,
-    "kind": "file",
-    "name": "src/core/sorted.js",
-    "content": "\nimport makeheap from './makeheap' ;\nimport pop from './pop' ;\n\nexport default function* sorted ( arity , compare , swap , a , i , j ) {\n\n\tmakeheap( arity , compare , swap , a , i , j ) ;\n\n\tfor ( ; i < j ; --j ) yield pop( arity , compare , swap , a , i , j ) ;\n\n}\n",
-    "static": true,
-    "longname": "/home/aureooms/dev/js/js-d-ary-heap/src/core/sorted.js",
-    "access": "public",
-    "description": null,
-    "lineNumber": 1
-  },
-  {
-    "__docId__": 91,
     "kind": "function",
     "name": "sorted",
     "memberof": "src/core/sorted.js",
@@ -2097,10 +2075,10 @@
     "longname": "src/core/sorted.js~sorted",
     "access": "public",
     "export": true,
-    "importPath": "@aureooms/js-d-ary-heap/src/core/sorted.js",
+    "importPath": "@heap-data-structure/d-ary-heap/src/core/sorted.js",
     "importStyle": "sorted",
     "description": null,
-    "lineNumber": 5,
+    "lineNumber": 4,
     "undocument": true,
     "params": [
       {
@@ -2143,28 +2121,28 @@
     "return": null
   },
   {
-    "__docId__": 92,
+    "__docId__": 90,
     "kind": "file",
     "name": "src/index.js",
-    "content": "import {\n\tDAryHeap ,\n\tDAryHeapWithoutReferences ,\n} from './adt' ;\n\nimport {\n\tmakeheap ,\n\tmerge ,\n\tnextchild ,\n\tpop ,\n\tpull ,\n\tpush ,\n\tremove ,\n\tsiftdown ,\n\tsiftup ,\n\tsorted ,\n} from './core' ;\n\nexport default {\n\tDAryHeap ,\n\tDAryHeapWithoutReferences ,\n\tmakeheap ,\n\tmerge ,\n\tnextchild ,\n\tpop ,\n\tpull ,\n\tpush ,\n\tremove ,\n\tsiftdown ,\n\tsiftup ,\n\tsorted ,\n} ;\n\nexport {\n\tDAryHeap ,\n\tDAryHeapWithoutReferences ,\n\tmakeheap ,\n\tmerge ,\n\tnextchild ,\n\tpop ,\n\tpull ,\n\tpush ,\n\tremove ,\n\tsiftdown ,\n\tsiftup ,\n\tsorted ,\n} ;\n",
+    "content": "export {default as DAryHeap} from './adt/DAryHeap.js';\nexport {default as DAryHeapWithoutReferences} from './adt/DAryHeapWithoutReferences.js';\nexport {default as makeheap} from './core/makeheap.js';\nexport {default as merge} from './core/merge.js';\nexport {default as nextchild} from './core/nextchild.js';\nexport {default as pop} from './core/pop.js';\nexport {default as pull} from './core/pull.js';\nexport {default as push} from './core/push.js';\nexport {default as remove} from './core/remove.js';\nexport {default as siftdown} from './core/siftdown.js';\nexport {default as siftup} from './core/siftup.js';\nexport {default as sorted} from './core/sorted.js';\n",
     "static": true,
-    "longname": "/home/aureooms/dev/js/js-d-ary-heap/src/index.js",
+    "longname": "/home/runner/work/d-ary-heap/d-ary-heap/src/index.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
   },
   {
     "kind": "index",
-    "content": "[@aureooms/js-d-ary-heap](https://aureooms.github.io/js-d-ary-heap)\n==\n\n<img src=\"https://cdn.rawgit.com/aureooms/js-d-ary-heap/main/media/sketch.svg\" width=\"864\">\n\n`d`-ary heap data structure library for JavaScript.\nSee [docs](https://aureooms.github.io/js-d-ary-heap).\nParent is [@aureooms/js-heap](https://github.com/aureooms/js-heap).\n\n```js\nmakeheap( 2 , increasing , swap , array , 0 , array.length ) ;\n//        ^       ^         ^       ^     ^        ^\n//      arity  ordering    swap   input [left  , right[\n//                        method\n//\nlet heap = new DAryHeap( 2 , compare.increasing ) ;\n//                       ^            ^\n//                     arity       ordering\n//\n```\n\n[![License](https://img.shields.io/github/license/aureooms/js-d-ary-heap.svg)](https://raw.githubusercontent.com/aureooms/js-d-ary-heap/main/LICENSE)\n[![Version](https://img.shields.io/npm/v/@aureooms/js-d-ary-heap.svg)](https://www.npmjs.org/package/@aureooms/js-d-ary-heap)\n[![Build](https://img.shields.io/travis/aureooms/js-d-ary-heap/main.svg)](https://travis-ci.org/aureooms/js-d-ary-heap/branches)\n[![Dependencies](https://img.shields.io/david/aureooms/js-d-ary-heap.svg)](https://david-dm.org/aureooms/js-d-ary-heap)\n[![Dev dependencies](https://img.shields.io/david/dev/aureooms/js-d-ary-heap.svg)](https://david-dm.org/aureooms/js-d-ary-heap?type=dev)\n[![GitHub issues](https://img.shields.io/github/issues/aureooms/js-d-ary-heap.svg)](https://github.com/aureooms/js-d-ary-heap/issues)\n[![Downloads](https://img.shields.io/npm/dm/@aureooms/js-d-ary-heap.svg)](https://www.npmjs.org/package/@aureooms/js-d-ary-heap)\n\n[![Code issues](https://img.shields.io/codeclimate/issues/aureooms/js-d-ary-heap.svg)](https://codeclimate.com/github/aureooms/js-d-ary-heap/issues)\n[![Code maintainability](https://img.shields.io/codeclimate/maintainability/aureooms/js-d-ary-heap.svg)](https://codeclimate.com/github/aureooms/js-d-ary-heap/trends/churn)\n[![Code coverage (cov)](https://img.shields.io/codecov/c/gh/aureooms/js-d-ary-heap/main.svg)](https://codecov.io/gh/aureooms/js-d-ary-heap)\n[![Code technical debt](https://img.shields.io/codeclimate/tech-debt/aureooms/js-d-ary-heap.svg)](https://codeclimate.com/github/aureooms/js-d-ary-heap/trends/technical_debt)\n[![Documentation](https://aureooms.github.io/js-d-ary-heap/badge.svg)](https://aureooms.github.io/js-d-ary-heap/source.html)\n[![Package size](https://img.shields.io/bundlephobia/minzip/@aureooms/js-d-ary-heap)](https://bundlephobia.com/result?p=@aureooms/js-d-ary-heap)\n\n## Description\nThis package contains a `d`-ary heap implementation that can be parametrized\nwith any `d > 0`.\n\n## Reference\n\n  - http://www.cs.princeton.edu/~wayne/cs423/lectures/heaps-4up.pdf\n  - http://stackoverflow.com/questions/6531543/efficient-implementation-of-binary-heaps\n",
-    "longname": "/home/aureooms/dev/js/js-d-ary-heap/README.md",
+    "content": ":octopus:\n[@heap-data-structure/d-ary-heap](https://heap-data-structure.github.io/d-ary-heap)\n==\n\n<p align=\"center\">\n<img src=\"https://raw.githubusercontent.com/heap-data-structure/d-ary-heap/main/media/sketch.svg\" width=\"600\">\n</p>\n\n`d`-ary heap data structure library for JavaScript.\nSee [docs](https://heap-data-structure.github.io/d-ary-heap).\nParent is [@heap-data-structure](https://github.com/heap-data-structure/about).\n\n```js\nimport {increasing} from '@total-order/primitive';\nimport {makeheap} from '@heap-data-structure/d-ary-heap';\nmakeheap( 2 , increasing , swap , array , 0 , array.length ) ;\n//        ^       ^         ^       ^     ^        ^\n//      arity  ordering    swap   input [left  , right[\n//                        method\n//\n\nimport {DAryHeap} from '@heap-data-structure/d-ary-heap';\nlet heap = new DAryHeap( 2 , increasing ) ;\n//                       ^       ^\n//                     arity  ordering\n//\n```\n\n[![License](https://img.shields.io/github/license/heap-data-structure/d-ary-heap.svg)](https://raw.githubusercontent.com/heap-data-structure/d-ary-heap/main/LICENSE)\n[![Version](https://img.shields.io/npm/v/@heap-data-structure/d-ary-heap.svg)](https://www.npmjs.org/package/@heap-data-structure/d-ary-heap)\n[![Tests](https://img.shields.io/github/workflow/status/heap-data-structure/d-ary-heap/ci:test?event=push&label=tests)](https://github.com/heap-data-structure/d-ary-heap/actions/workflows/ci:test.yml?query=branch:main)\n[![Dependencies](https://img.shields.io/david/heap-data-structure/d-ary-heap.svg)](https://david-dm.org/heap-data-structure/d-ary-heap)\n[![Dev dependencies](https://img.shields.io/david/dev/heap-data-structure/d-ary-heap.svg)](https://david-dm.org/heap-data-structure/d-ary-heap?type=dev)\n[![GitHub issues](https://img.shields.io/github/issues/heap-data-structure/d-ary-heap.svg)](https://github.com/heap-data-structure/d-ary-heap/issues)\n[![Downloads](https://img.shields.io/npm/dm/@heap-data-structure/d-ary-heap.svg)](https://www.npmjs.org/package/@heap-data-structure/d-ary-heap)\n\n[![Code issues](https://img.shields.io/codeclimate/issues/heap-data-structure/d-ary-heap.svg)](https://codeclimate.com/github/heap-data-structure/d-ary-heap/issues)\n[![Code maintainability](https://img.shields.io/codeclimate/maintainability/heap-data-structure/d-ary-heap.svg)](https://codeclimate.com/github/heap-data-structure/d-ary-heap/trends/churn)\n[![Code coverage (cov)](https://img.shields.io/codecov/c/gh/heap-data-structure/d-ary-heap/main.svg)](https://codecov.io/gh/heap-data-structure/d-ary-heap)\n[![Code technical debt](https://img.shields.io/codeclimate/tech-debt/heap-data-structure/d-ary-heap.svg)](https://codeclimate.com/github/heap-data-structure/d-ary-heap/trends/technical_debt)\n[![Documentation](https://heap-data-structure.github.io/d-ary-heap/badge.svg)](https://heap-data-structure.github.io/d-ary-heap/source.html)\n[![Package size](https://img.shields.io/bundlephobia/minzip/@heap-data-structure/d-ary-heap)](https://bundlephobia.com/result?p=@heap-data-structure/d-ary-heap)\n\n## :newspaper: Description\nThis package contains a `d`-ary heap implementation that can be parametrized\nwith any `d > 0`.\n",
+    "longname": "/home/runner/work/d-ary-heap/d-ary-heap/README.md",
     "name": "./README.md",
     "static": true,
     "access": "public"
   },
   {
     "kind": "packageJSON",
-    "content": "{\n  \"name\": \"@aureooms/js-d-ary-heap\",\n  \"description\": \"d-ary heap data structure library for JavaScript\",\n  \"version\": \"12.0.0\",\n  \"author\": \"Aurélien Ooms <aurelien.ooms@gmail.com>\",\n  \"ava\": {\n    \"files\": [\n      \"test/src/**/*\"\n    ],\n    \"require\": [\n      \"regenerator-runtime/runtime\",\n      \"@babel/register\"\n    ],\n    \"concurrency\": 8,\n    \"timeout\": \"1m\"\n  },\n  \"babel\": {\n    \"presets\": [\n      \"@babel/preset-env\"\n    ],\n    \"env\": {\n      \"test\": {\n        \"presets\": [\n          \"babel-preset-power-assert\"\n        ],\n        \"plugins\": [\n          [\n            \"transform-remove-console\",\n            {\n              \"exclude\": [\n                \"log\",\n                \"error\",\n                \"warn\"\n              ]\n            }\n          ]\n        ],\n        \"sourceMaps\": \"inline\"\n      },\n      \"development\": {\n        \"presets\": [\n          \"babel-preset-power-assert\"\n        ],\n        \"plugins\": [\n          [\n            \"transform-remove-console\",\n            {\n              \"exclude\": [\n                \"log\",\n                \"error\",\n                \"warn\"\n              ]\n            }\n          ]\n        ],\n        \"sourceMaps\": \"inline\"\n      },\n      \"production\": {\n        \"plugins\": [\n          \"babel-plugin-unassert\",\n          [\n            \"transform-remove-console\",\n            {\n              \"exclude\": [\n                \"log\",\n                \"error\",\n                \"warn\"\n              ]\n            }\n          ]\n        ],\n        \"sourceMaps\": \"inline\"\n      }\n    }\n  },\n  \"bugs\": {\n    \"url\": \"https://github.com/aureooms/js-d-ary-heap/issues\"\n  },\n  \"dependencies\": {},\n  \"devDependencies\": {\n    \"@aureooms/js-array\": \"4.0.0\",\n    \"@aureooms/js-compare\": \"1.4.8\",\n    \"@aureooms/js-functools\": \"2.0.3\",\n    \"@aureooms/js-heap-spec\": \"15.0.3\",\n    \"@aureooms/js-itertools\": \"4.1.0\",\n    \"@aureooms/js-random\": \"2.0.0\",\n    \"@aureooms/js-sort\": \"7.0.0\",\n    \"@babel/cli\": \"7.12.10\",\n    \"@babel/core\": \"7.12.10\",\n    \"@babel/preset-env\": \"7.12.11\",\n    \"@babel/register\": \"7.12.10\",\n    \"ava\": \"3.14.0\",\n    \"babel-plugin-transform-remove-console\": \"6.9.4\",\n    \"babel-plugin-unassert\": \"3.0.1\",\n    \"babel-preset-power-assert\": \"3.0.0\",\n    \"coveralls\": \"3.1.0\",\n    \"esdoc\": \"1.1.0\",\n    \"esdoc-ecmascript-proposal-plugin\": \"1.0.0\",\n    \"esdoc-inject-script-plugin\": \"1.0.0\",\n    \"esdoc-inject-style-plugin\": \"1.0.0\",\n    \"esdoc-standard-plugin\": \"1.0.0\",\n    \"np\": \"7.0.0\",\n    \"nyc\": \"15.1.0\",\n    \"power-assert\": \"1.6.1\",\n    \"regenerator-runtime\": \"0.13.7\"\n  },\n  \"files\": [\n    \"lib\"\n  ],\n  \"homepage\": \"https://aureooms.github.io/js-d-ary-heap\",\n  \"keywords\": [\n    \"binary\",\n    \"computer science\",\n    \"d-ary\",\n    \"data\",\n    \"data structures\",\n    \"heap\",\n    \"javascript\",\n    \"js\",\n    \"library\",\n    \"structure\"\n  ],\n  \"license\": \"AGPL-3.0\",\n  \"main\": \"lib/index.js\",\n  \"repository\": {\n    \"url\": \"https://github.com/aureooms/js-d-ary-heap.git\",\n    \"type\": \"git\"\n  },\n  \"scripts\": {\n    \"build\": \"babel --delete-dir-on-start --env-name production src -d lib\",\n    \"cover\": \"nyc --reporter=lcov npm test\",\n    \"dev\": \"npm run lint -- --fix && npm run cover -- -- -st --fail-fast\",\n    \"esdoc\": \"esdoc\",\n    \"lint\": \"true\",\n    \"prepare\": \"npm run build\",\n    \"release\": \"np\",\n    \"test\": \"ava\",\n    \"travis\": \"npm run lint && npm run cover\"\n  },\n  \"sideEffects\": false\n}\n",
-    "longname": "/home/aureooms/dev/js/js-d-ary-heap/package.json",
+    "content": "{\n  \"name\": \"@heap-data-structure/d-ary-heap\",\n  \"description\": \"d-ary heap data structure library for JavaScript\",\n  \"version\": \"13.0.0\",\n  \"license\": \"AGPL-3.0\",\n  \"author\": \"make-github-pseudonymous-again\",\n  \"homepage\": \"https://heap-data-structure.github.io/d-ary-heap\",\n  \"repository\": {\n    \"url\": \"https://github.com/heap-data-structure/d-ary-heap\",\n    \"type\": \"git\"\n  },\n  \"bugs\": {\n    \"url\": \"https://github.com/heap-data-structure/d-ary-heap/issues\"\n  },\n  \"keywords\": [\n    \"binary\",\n    \"computer science\",\n    \"d-ary\",\n    \"data\",\n    \"data structures\",\n    \"heap\",\n    \"javascript\",\n    \"js\",\n    \"library\",\n    \"structure\"\n  ],\n  \"sideEffects\": false,\n  \"type\": \"module\",\n  \"source\": \"src/index.js\",\n  \"main\": \"dist/index.cjs\",\n  \"module\": \"dist/index.module.js\",\n  \"esmodule\": \"dist/index.modern.js\",\n  \"umd:main\": \"dist/index.umd.js\",\n  \"unpkg\": \"dist/index.umd.js\",\n  \"exports\": {\n    \".\": {\n      \"browser\": \"./dist/index.module.js\",\n      \"umd\": \"./dist/index.umd.js\",\n      \"require\": \"./dist/index.cjs\",\n      \"default\": \"./dist/index.modern.js\"\n    }\n  },\n  \"files\": [\n    \"dist\"\n  ],\n  \"scripts\": {\n    \"build\": \"NODE_ENV=production microbundle\",\n    \"build-docs\": \"esdoc\",\n    \"build-gh-pages\": \"npm run build-docs\",\n    \"ci:build\": \"npm run build\",\n    \"ci:test\": \"npm run lint-config && npm run lint && npm run cover\",\n    \"commit-msg\": \"commitlint --edit\",\n    \"cover\": \"NODE_ENV=cover c8 --all --src src --reporter lcov --reporter text-summary --reporter text npm test\",\n    \"debug\": \"NODE_ENV=debug npm run test -- -st --fail-fast\",\n    \"dev\": \"npm run lint-config-and-fix && npm run lint-and-fix && npm run cover -- -- -st --fail-fast\",\n    \"install-hooks\": \"husky install\",\n    \"lint\": \"xo\",\n    \"lint-and-fix\": \"npm run lint -- --fix\",\n    \"lint-config\": \"fixpack --dryRun\",\n    \"lint-config-and-fix\": \"fixpack || fixpack\",\n    \"postinstall\": \"npm run install-hooks\",\n    \"postpublish\": \"pinst --enable\",\n    \"precommit\": \"lint-staged\",\n    \"prepare\": \"npm run build\",\n    \"prepublishOnly\": \"pinst --disable\",\n    \"release\": \"np --message ':hatching_chick: release: Bumping to v%s.'\",\n    \"test\": \"ava\"\n  },\n  \"dependencies\": {},\n  \"devDependencies\": {\n    \"@aureooms/js-array\": \"4.0.0\",\n    \"@babel/core\": \"7.14.8\",\n    \"@babel/preset-env\": \"7.14.8\",\n    \"@babel/register\": \"7.14.5\",\n    \"@commitlint/cli\": \"13.1.0\",\n    \"@comparison-sorting/is-sorted\": \"^0.0.1\",\n    \"@functional-abstraction/functools\": \"^3.0.2\",\n    \"@heap-data-structure/specification\": \"^16.0.0\",\n    \"@iterable-iterator/chain\": \"^2.0.1\",\n    \"@iterable-iterator/consume\": \"^1.0.1\",\n    \"@iterable-iterator/list\": \"^1.0.1\",\n    \"@iterable-iterator/map\": \"^1.0.1\",\n    \"@iterable-iterator/range\": \"^2.0.1\",\n    \"@js-library/commitlint-config\": \"0.0.4\",\n    \"@randomized/random\": \"^4.0.0\",\n    \"@set-theory/cartesian-product\": \"^2.0.1\",\n    \"@total-order/primitive\": \"^1.0.1\",\n    \"ava\": \"3.15.0\",\n    \"babel-plugin-transform-remove-console\": \"6.9.4\",\n    \"babel-plugin-unassert\": \"3.1.0\",\n    \"babel-preset-power-assert\": \"3.0.0\",\n    \"c8\": \"7.8.0\",\n    \"esdoc\": \"1.1.0\",\n    \"esdoc-ecmascript-proposal-plugin\": \"1.0.0\",\n    \"esdoc-inject-script-plugin\": \"1.0.0\",\n    \"esdoc-inject-style-plugin\": \"1.0.0\",\n    \"esdoc-standard-plugin\": \"1.0.0\",\n    \"fixpack\": \"4.0.0\",\n    \"husky\": \"7.0.1\",\n    \"lint-staged\": \"11.1.1\",\n    \"microbundle\": \"0.13.1\",\n    \"np\": \"7.5.0\",\n    \"pinst\": \"2.1.6\",\n    \"power-assert\": \"1.6.1\",\n    \"regenerator-runtime\": \"0.13.9\",\n    \"xo\": \"0.42.0\"\n  },\n  \"ava\": {\n    \"files\": [\n      \"test/src/**/*\"\n    ],\n    \"require\": [\n      \"regenerator-runtime/runtime\",\n      \"@babel/register\"\n    ],\n    \"timeout\": \"1m\",\n    \"concurrency\": 8\n  },\n  \"babel\": {\n    \"sourceMaps\": true,\n    \"presets\": [\n      [\n        \"@babel/preset-env\",\n        {\n          \"targets\": \"current node\"\n        }\n      ]\n    ],\n    \"plugins\": [\n      [\n        \"transform-remove-console\",\n        {\n          \"exclude\": [\n            \"log\",\n            \"error\",\n            \"warn\"\n          ]\n        }\n      ]\n    ],\n    \"env\": {\n      \"debug\": {\n        \"presets\": [\n          \"babel-preset-power-assert\"\n        ],\n        \"plugins\": [\n          [\n            \"transform-remove-console\",\n            {\n              \"exclude\": [\n                \"debug\",\n                \"log\",\n                \"error\",\n                \"warn\"\n              ]\n            }\n          ]\n        ]\n      },\n      \"test\": {\n        \"presets\": [\n          \"babel-preset-power-assert\"\n        ]\n      },\n      \"cover\": {\n        \"sourceMaps\": \"both\",\n        \"presets\": [\n          \"babel-preset-power-assert\"\n        ]\n      },\n      \"development\": {\n        \"presets\": [\n          [\n            \"@babel/preset-env\",\n            {\n              \"targets\": [\n                \"defaults\",\n                \"maintained node versions\"\n              ]\n            }\n          ],\n          \"babel-preset-power-assert\"\n        ]\n      },\n      \"production\": {\n        \"presets\": [\n          [\n            \"@babel/preset-env\",\n            {\n              \"targets\": [\n                \"defaults\",\n                \"maintained node versions\"\n              ]\n            }\n          ]\n        ],\n        \"plugins\": [\n          \"babel-plugin-unassert\"\n        ]\n      }\n    }\n  },\n  \"lint-staged\": {\n    \"*.js\": [\n      \"npm run lint-and-fix\"\n    ],\n    \"package.json\": [\n      \"npm run lint-config-and-fix\"\n    ]\n  },\n  \"prettier\": {\n    \"trailingComma\": \"all\"\n  },\n  \"xo\": {\n    \"prettier\": true,\n    \"plugins\": [\n      \"unicorn\"\n    ],\n    \"rules\": {\n      \"unicorn/filename-case\": \"off\",\n      \"camelcase\": \"off\",\n      \"unicorn/prevent-abbreviations\": \"off\",\n      \"no-constant-condition\": \"off\",\n      \"unicorn/prefer-math-trunc\": \"off\",\n      \"unicorn/no-new-array\": \"off\",\n      \"no-negated-condition\": \"off\"\n    },\n    \"overrides\": [\n      {\n        \"files\": [\n          \"doc/**\"\n        ],\n        \"env\": \"browser\"\n      }\n    ]\n  }\n}\n",
+    "longname": "/home/runner/work/d-ary-heap/d-ary-heap/package.json",
     "name": "package.json",
     "static": true,
     "access": "public"
@@ -2179,7 +2157,7 @@
   },
   {
     "kind": "manual",
-    "longname": "/home/aureooms/dev/js/js-d-ary-heap/doc/manual/overview.md",
+    "longname": "/home/runner/work/d-ary-heap/d-ary-heap/doc/manual/overview.md",
     "name": "./doc/manual/overview.md",
     "content": "# Overview\n",
     "static": true,
@@ -2187,35 +2165,35 @@
   },
   {
     "kind": "manual",
-    "longname": "/home/aureooms/dev/js/js-d-ary-heap/doc/manual/installation.md",
+    "longname": "/home/runner/work/d-ary-heap/d-ary-heap/doc/manual/installation.md",
     "name": "./doc/manual/installation.md",
-    "content": "# Installation\n\nCan be managed using\n[jspm](http://jspm.io)\nor [npm](https://github.com/npm/npm).\n\n### jspm\n```terminal\njspm install npm:@aureooms/js-d-ary-heap\n```\n\n### npm\n```terminal\nnpm install @aureooms/js-d-ary-heap --save\n```\n",
+    "content": "# Installation\n\nCan be managed using\n[jspm](http://jspm.io)\nor [npm](https://github.com/npm/npm).\n\n### jspm\n```terminal\njspm install npm:@heap-data-structure/d-ary-heap\n```\n\n### npm\n```terminal\nnpm install @heap-data-structure/d-ary-heap --save\n```\n",
     "static": true,
     "access": "public"
   },
   {
     "kind": "manual",
-    "longname": "/home/aureooms/dev/js/js-d-ary-heap/doc/manual/usage.md",
+    "longname": "/home/runner/work/d-ary-heap/d-ary-heap/doc/manual/usage.md",
     "name": "./doc/manual/usage.md",
-    "content": "# Usage\n\nThe code needs a ES2015+ polyfill to work, for example\n[regenerator-runtime/runtime](https://babeljs.io/docs/usage/polyfill).\n```js\nrequire( 'regenerator-runtime/runtime' ) ;\n// or\nimport 'regenerator-runtime/runtime' ;\n```\n\nThen\n```js\nconst daryheap = require( '@aureooms/js-d-ary-heap' ) ;\n// or\nimport daryheap from '@aureooms/js-d-ary-heap' ;\n```\n",
+    "content": "# Usage\n\nThe code needs a ES2015+ polyfill to work, for example\n[regenerator-runtime/runtime](https://babeljs.io/docs/usage/polyfill).\n```js\nawait import( 'regenerator-runtime/runtime.js' ) ;\n// or\nimport 'regenerator-runtime/runtime.js' ;\n```\n\nThen\n```js\nconst daryheap = await import( '@heap-data-structure/d-ary-heap' ) ;\n// or\nimport daryheap from '@heap-data-structure/d-ary-heap' ;\n```\n",
     "static": true,
     "access": "public"
   },
   {
     "kind": "manual",
-    "longname": "/home/aureooms/dev/js/js-d-ary-heap/doc/manual/example.md",
+    "longname": "/home/runner/work/d-ary-heap/d-ary-heap/doc/manual/example.md",
     "name": "./doc/manual/example.md",
     "content": "# Examples\n\n#### Functions\n\n```js\n// Builds a heap in O(n) operations.\nmakeheap( arity , compare , swap , array , left , right ) ;\n\n// Merges heaps at intervals [i, j[ and [j, k[ in array *a* into a new heap at interval [i, k[.\nmerge( arity , compare , swap , array , left , middle , right ) ;\n\n// Computes which child is the smallest according to a comparison function.\nnextchild( arity , compare , swap , array , left , right ) ;\n\n// Pops the root from a d-ary heap.\npop( arity , compare , swap , array , left , right ) ;\n\n// Sifts a node up to the root as if its priority was the highest.\npull( arity , compare , swap , array , left , right , target ) ;\n\n// Inserts the jth element of an array in an existing dary heap in interval [i, j[.\npush( arity , compare , swap , array , left , right ) ;\n\n// Removes a target element from a d-ary heap.\nremove( arity , compare , swap , array , left , right , target ) ;\n\n// Sifts down a node.\nsiftdown( arity , compare , swap , array , left , right , target ) ;\n\n// Sifts up a node.\nsiftup( arity , compare , swap , array , left , right , target ) ;\n\n// Sorted iterator on the elements of the input array.\n// If only the first k elements are read the cost is O(n + k log n).\n// The array is mutated.\nsorted( arity , compare , swap , array , left , right ) ;\n```\n\n#### ADT\n\n```js\n// can choose between 2 different implementations\n//\n//   - DAryHeap\n//      # head -> value\n//      # headreference -> reference\n//      # pop -> value\n//      # popreference -> reference\n//      # push( value ) -> reference\n//      # pushreference( reference )\n//      # merge( other )\n//      # update( reference , value )\n//      # decreasekey( reference , value )\n//      # increasekey( reference , value )\n//      # delete( reference )\n//\n//   - DAryHeapWithoutReferences\n//      # head -> value\n//      # pop -> value\n//      # push( value )\n//      # merge( other )\n\nlet heap = new daryheap. ... ( 2 , compare.increasing ) ;\n//                         ^            ^\n//                       arity       ordering\n```\n",
     "static": true,
     "access": "public"
   },
   {
-    "__docId__": 93,
+    "__docId__": 91,
     "kind": "testFile",
     "name": "src/spec.js",
-    "content": "\nimport ava from 'ava' ;\n\nimport * as spec from '@aureooms/js-heap-spec' ;\n\nimport { DAryHeap , DAryHeapWithoutReferences } from '../../src' ;\n\nconst heapswithreferences = [\n\n\t[\"DAryHeap, unary\", compare => new DAryHeap( 1 , compare ) ],\n\t[\"DAryHeap, binary\", compare => new DAryHeap( 2 , compare ) ],\n\t[\"DAryHeap, ternary\", compare => new DAryHeap( 3 , compare ) ],\n\t[\"DAryHeap, 4-ary\", compare => new DAryHeap( 4 , compare ) ],\n\t[\"DAryHeap, 5-ary\", compare => new DAryHeap( 5 , compare ) ],\n\n] ;\n\nconst heapswithoutreferences = [\n\n\t[\"DAryHeapWithoutReferences, unary\", compare => new DAryHeapWithoutReferences( 1 , compare ) ],\n\t[\"DAryHeapWithoutReferences, binary\", compare => new DAryHeapWithoutReferences( 2 , compare ) ],\n\t[\"DAryHeapWithoutReferences, ternary\", compare => new DAryHeapWithoutReferences( 3 , compare ) ],\n\t[\"DAryHeapWithoutReferences, 4-ary\", compare => new DAryHeapWithoutReferences( 4 , compare ) ],\n\t[\"DAryHeapWithoutReferences, 5-ary\", compare => new DAryHeapWithoutReferences( 5 , compare ) ],\n\n] ;\n\nspec.test( ava , heapswithreferences , { references : true , length : true } ) ;\nspec.test( ava , heapswithoutreferences , { references : false , length : true } ) ;\n",
+    "content": "// eslint-disable-next-line ava/use-test\nimport ava from 'ava';\n\nimport * as spec from '@heap-data-structure/specification';\n\nimport {DAryHeap, DAryHeapWithoutReferences} from '../../src/index.js';\n\nconst heapswithreferences = [\n\t['DAryHeap, unary', (compare) => new DAryHeap(1, compare)],\n\t['DAryHeap, binary', (compare) => new DAryHeap(2, compare)],\n\t['DAryHeap, ternary', (compare) => new DAryHeap(3, compare)],\n\t['DAryHeap, 4-ary', (compare) => new DAryHeap(4, compare)],\n\t['DAryHeap, 5-ary', (compare) => new DAryHeap(5, compare)],\n];\n\nconst heapswithoutreferences = [\n\t[\n\t\t'DAryHeapWithoutReferences, unary',\n\t\t(compare) => new DAryHeapWithoutReferences(1, compare),\n\t],\n\t[\n\t\t'DAryHeapWithoutReferences, binary',\n\t\t(compare) => new DAryHeapWithoutReferences(2, compare),\n\t],\n\t[\n\t\t'DAryHeapWithoutReferences, ternary',\n\t\t(compare) => new DAryHeapWithoutReferences(3, compare),\n\t],\n\t[\n\t\t'DAryHeapWithoutReferences, 4-ary',\n\t\t(compare) => new DAryHeapWithoutReferences(4, compare),\n\t],\n\t[\n\t\t'DAryHeapWithoutReferences, 5-ary',\n\t\t(compare) => new DAryHeapWithoutReferences(5, compare),\n\t],\n];\n\nspec.test(ava, heapswithreferences, {references: true, length: true});\nspec.test(ava, heapswithoutreferences, {references: false, length: true});\n",
     "static": true,
-    "longname": "/home/aureooms/dev/js/js-d-ary-heap/test/src/spec.js",
+    "longname": "/home/runner/work/d-ary-heap/d-ary-heap/test/src/spec.js",
     "access": null,
     "description": null,
     "lineNumber": 1
