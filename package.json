@@ -129,7 +129,7 @@
   "license": "AGPL-3.0",
   "main": "lib/index.js",
   "repository": {
-    "url": "https://github.com/heap-data-structure/d-ary-heap.git",
+    "url": "https://github.com/heap-data-structure/d-ary-heap",
     "type": "git"
   },
   "scripts": {
