@@ -3,14 +3,14 @@
 The code needs a ES2015+ polyfill to work, for example
 [regenerator-runtime/runtime](https://babeljs.io/docs/usage/polyfill).
 ```js
-require( 'regenerator-runtime/runtime' ) ;
+await import( 'regenerator-runtime/runtime.js' ) ;
 // or
 import 'regenerator-runtime/runtime.js' ;
 ```
 
 Then
 ```js
-const daryheap = require( '@heap-data-structure/d-ary-heap' ) ;
+const daryheap = await import( '@heap-data-structure/d-ary-heap' ) ;
 // or
 import daryheap from '@heap-data-structure/d-ary-heap' ;
 ```
