@@ -1,6 +1,6 @@
 import test from 'ava';
 
-import {swap} from '@aureooms/js-array';
+import {swap} from '@array-like/swap';
 import {increasing, decreasing} from '@total-order/primitive';
 import {shuffle} from '@randomized/random';
 import {isSorted} from '@comparison-sorting/is-sorted';

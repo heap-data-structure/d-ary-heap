@@ -11,6 +11,17 @@ See [docs](https://heap-data-structure.github.io/d-ary-heap).
 Parent is [@heap-data-structure](https://github.com/heap-data-structure/about).
 
 ```js
+import {_calloc} from '@array-like/alloc';
+const calloc = _calloc(Int32Array);
+const array = calloc(10000);
+
+import {iota} from '@array-like/fill';
+iota(array, 0, array.length, 0);
+
+import {shuffle} from '@randomized/random';
+shuffle(array, 0, array.length);
+
+import {swap} from '@array-like/swap';
 import {increasing} from '@total-order/primitive';
 import {makeheap} from '@heap-data-structure/d-ary-heap';
 makeheap( 2 , increasing , swap , array , 0 , array.length ) ;

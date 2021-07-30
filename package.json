@@ -68,7 +68,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@aureooms/js-array": "4.0.0",
+    "@array-like/swap": "^0.0.1",
     "@babel/core": "7.14.8",
     "@babel/preset-env": "7.14.8",
     "@babel/register": "7.14.5",
