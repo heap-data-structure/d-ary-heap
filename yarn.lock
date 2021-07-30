@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@array-like/swap@^0.0.1":
+"@array-like/swap@0.0.1":
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/@array-like/swap/-/swap-0.0.1.tgz#7df772b65ce0f5d225daabdf220e55cc5061c21e"
   integrity sha512-RYbGv/aGmNUiGk4Ubkcp+u3d1hySdtnCgTqxek5NYGxF/U0hPLCs64lEiqQzwQFjK4c+Mapi5HSebZdqYfrXcg==
