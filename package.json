@@ -75,7 +75,7 @@
     "@commitlint/cli": "15.0.0",
     "@comparison-sorting/is-sorted": "0.0.1",
     "@functional-abstraction/functools": "3.0.2",
-    "@heap-data-structure/specification": "16.0.0",
+    "@heap-data-structure/specification": "16.0.1",
     "@iterable-iterator/chain": "2.0.1",
     "@iterable-iterator/consume": "1.0.1",
     "@iterable-iterator/list": "1.0.1",
