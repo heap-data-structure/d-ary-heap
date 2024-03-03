@@ -40,8 +40,7 @@ let heap = new DAryHeap( 2 , increasing ) ;
 [![License](https://img.shields.io/github/license/heap-data-structure/d-ary-heap.svg)](https://raw.githubusercontent.com/heap-data-structure/d-ary-heap/main/LICENSE)
 [![Version](https://img.shields.io/npm/v/@heap-data-structure/d-ary-heap.svg)](https://www.npmjs.org/package/@heap-data-structure/d-ary-heap)
 [![Tests](https://img.shields.io/github/workflow/status/heap-data-structure/d-ary-heap/ci:test?event=push&label=tests)](https://github.com/heap-data-structure/d-ary-heap/actions/workflows/ci:test.yml?query=branch:main)
-[![Dependencies](https://img.shields.io/david/heap-data-structure/d-ary-heap.svg)](https://david-dm.org/heap-data-structure/d-ary-heap)
-[![Dev dependencies](https://img.shields.io/david/dev/heap-data-structure/d-ary-heap.svg)](https://david-dm.org/heap-data-structure/d-ary-heap?type=dev)
+[![Dependencies](https://img.shields.io/librariesio/github/heap-data-structure/d-ary-heap.svg)](https://github.com/heap-data-structure/d-ary-heap/network/dependencies)
 [![GitHub issues](https://img.shields.io/github/issues/heap-data-structure/d-ary-heap.svg)](https://github.com/heap-data-structure/d-ary-heap/issues)
 [![Downloads](https://img.shields.io/npm/dm/@heap-data-structure/d-ary-heap.svg)](https://www.npmjs.org/package/@heap-data-structure/d-ary-heap)
 
