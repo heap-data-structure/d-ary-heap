@@ -16,7 +16,7 @@ import {
 	star,
 } from '@functional-abstraction/functools';
 
-import {sorted} from '../../src/index.js';
+import {sorted} from '#module';
 
 function check(arity, comparename, compare, ctor, n) {
 	const title = `sorted-${arity} (new ${ctor.name}(${n}), ${comparename})`;

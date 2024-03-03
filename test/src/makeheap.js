@@ -16,7 +16,7 @@ import {
 	star,
 } from '@functional-abstraction/functools';
 
-import {makeheap, pop} from '../../src/index.js';
+import {makeheap, pop} from '#module';
 
 const check = function (arity, comparename, compare, ctor, n) {
 	const title = `makeheap-${arity} (new ${ctor.name}(${n}), ${comparename})`;
