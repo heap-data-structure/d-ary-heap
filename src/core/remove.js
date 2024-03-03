@@ -1,5 +1,5 @@
-import pull from './pull.js';
 import pop from './pop.js';
+import pull from './pull.js';
 
 /**
  * Removes a target element from a d-ary heap.

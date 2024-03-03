@@ -1,9 +1,9 @@
+import merge from '../core/merge.js';
 import pop from '../core/pop.js';
 import push from '../core/push.js';
-import merge from '../core/merge.js';
-import siftup from '../core/siftup.js';
-import siftdown from '../core/siftdown.js';
 import remove from '../core/remove.js';
+import siftdown from '../core/siftdown.js';
+import siftup from '../core/siftup.js';
 
 export default function DAryHeap(arity, compare) {
 	// Arity of this heap

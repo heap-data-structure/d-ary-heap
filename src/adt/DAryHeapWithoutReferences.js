@@ -1,6 +1,6 @@
+import merge from '../core/merge.js';
 import pop from '../core/pop.js';
 import push from '../core/push.js';
-import merge from '../core/merge.js';
 
 export default function DAryHeapWithoutReferences(arity, compare) {
 	// Arity of this heap
